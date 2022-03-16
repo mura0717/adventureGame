@@ -2,6 +2,7 @@ package com.company;
 
 public class Room {
 
+    // Room Variables
     private String name;
     private String description;
     private Room east;
@@ -10,13 +11,12 @@ public class Room {
     private Room south;
 
 
-
     // Room Constructor
     public Room(String name, String description){
         this.name = name;
         this.description = description;
     }
-    // Setter: setEast/West/North/South
+    // Room Setters
     public void setEast(Room east) {
         this.east = east;
     }
@@ -33,7 +33,7 @@ public class Room {
         this.south = south;
     }
 
-    // Getter:
+    // Room Getters
 
     public String getName() {
         return name;
@@ -59,15 +59,12 @@ public class Room {
         return south;
     }
 
-
-
+    // Room toString
     public String toString() {
 
         return name + " - " + description;
 
     }
-
-
 }
 
 
