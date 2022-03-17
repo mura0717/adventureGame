@@ -7,12 +7,14 @@ public class Player {
 
     // Checks if the direction given by the Player is possible.
     public static void wrongWay() {
-        System.out.println("");
-        System.out.println("----------------------");
-        System.out.println("You cannot go that way");
-        System.out.println("----------------------");
-        System.out.println("");
-        System.out.print("[Type here]: ");
+        System.out.print("""
+        
+        ---------------------------------------------
+        That way is blocked.
+        ---------------------------------------------
+        
+        Type again here]:
+        """);
     }
 
     public static void rightWay() {
@@ -21,7 +23,7 @@ public class Player {
         System.out.println("Entering: " + currentRoom.toString());
         System.out.println("-----------------------------------");
         System.out.println("");
-        System.out.print("[Type here]: ");
+        System.out.print("[Type next move]: ");
     }
 
 

@@ -26,35 +26,33 @@ public class RunGame {
                     System.out.println("You are in " + currentRoom.toString());
                     System.out.println("------------------------------------");
                     System.out.println("");
-                    System.out.print("[Type here]: ");
+                    System.out.print("[Type next move]: ");
                 }
-
-                case "help" -> {
-                    System.out.println("");
-                    System.out.println("------------------------------------");
-                    System.out.println("Use the following commands:" + "\n" +
-                            "- go north" + "\n" +
-                            "- go south" + "\n" +
-                            "- go east" + "\n" +
-                            "- go west");
-                }
+                case "help" -> Commands.menuLoop();
 
                 case "exit" -> {
-                    System.out.println("");
-                    System.out.println("---------------------");
-                    System.out.println("Ending the Adventure.");
-                    System.out.println("--> See you next time.");
-                    System.out.println("---------------------");
+                    System.out.println("""
+                            
+                        ---------------------
+                        Ending the Adventure.
+                        See you next Wednesday.
+                        ---------------------
+                            
+                        """);
                     System.exit(0);
                 }
 
                 default -> {
-                    System.out.println("");
-                    System.out.println("----------------------------");
-                    System.out.println("Wrong command - Type again.");
-                    System.out.println("----------------------------");
-                    System.out.println("");
-                    System.out.print("[Type here]: ");
+
+                    System.out.print("""
+                  
+                        ----------------------------
+                        Invalid command.
+                        ----------------------------
+                    
+                        [Type again here]:
+                    
+                    """);
                 }
             }
         }

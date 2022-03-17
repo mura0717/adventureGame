@@ -2,21 +2,24 @@ package com.company;
 
 public class Commands {
 
-    public static void menuLoop() throws InterruptedException {
-        System.out.println("");
+    public static void menuLoop() {
         System.out.println("""
-                        Commands to orient yourself:
-                            - go north
-                            - go south
-                            - go east
-                            - go west
-                        """
+            You can orient yourself with the following commands:
+                - go north
+                - go south
+                - go east
+                - go west
+                
+                - look: Look around.
+                - take: Takes items and adds to inventory.
+                - drop: Drops items and removes them from the inventory.
+                - inventory: Shows current list of items.
+                - help: Commands Menu.
+                - exit: End game.
+                [Type here]: 
+                
+            """
                 );
-        System.out.println("");
-        System.out.println("- look: For looking around the room.");
-        System.out.println("- help: For reading about the game.");
-        System.out.println("- exit: For ending the adventure.");
-        System.out.println("");
-        System.out.print("[Type here]: ");
+        System.out.print("");
     }
 }
