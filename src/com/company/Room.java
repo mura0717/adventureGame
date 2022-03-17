@@ -61,9 +61,7 @@ public class Room {
 
     // Room toString
     public String toString() {
-
         return name + " - " + description;
-
     }
 }
 
