@@ -1,6 +1,12 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
+
+    // Items i Rooms.
+    ArrayList<Item> roomItems = new ArrayList<>();
 
     // Room Variables
     private String name;
@@ -63,6 +69,17 @@ public class Room {
     public String toString() {
         return name + " - " + description;
     }
+
+
+    /*-------------------------------------------------------------------------------*/
+
+    public void addItem (Item item) {
+
+        roomItems.add(item);
+
+
+    }
+
 }
 
 

@@ -83,13 +83,28 @@ public class Map {
         room9.setWest(room8);
 
         currentRoom = room1;
+
+        // ITEM:
+
+        Item room3_Keycard = new Item("Keycard","A tiny and shiny key.");
+        Item room2_Knife = new Item("Knife","A bloddy knife");
+        Item room4_Flashlight = new Item("Flashlight","");
+        Item room6_Sandwich = new Item("Sandwich","");
+        Item room9_MetalValve = new Item("Metal valve","");
+
+
+        room3.addItem(room3_Keycard);
+        room2.addItem(room2_Knife);
+        room4.addItem(room4_Flashlight);
+        room6.addItem(room6_Sandwich);
+        room9.addItem(room9_MetalValve);
     }
 
-    public static void setCurrentRoom(Room currentRoom) {
+    public void setCurrentRoom(Room currentRoom) {
         Map.currentRoom = currentRoom;
     }
 
-    public static void setRequestedRoom(Room requestedRoom) {
+    public void setRequestedRoom(Room requestedRoom) {
         Map.requestedRoom = requestedRoom;
     }
 }

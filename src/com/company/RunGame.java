@@ -6,7 +6,7 @@ import java.util.Scanner;
 import static com.company.Map.currentRoom;
 
 public class RunGame {
-    public static void playGame() {
+    public void playGame() {
         boolean gameLoop = true;
         // Player Input Scanner
         Scanner userInput = new Scanner(System.in);
@@ -23,13 +23,26 @@ public class RunGame {
                 case "look" -> {
                     System.out.println("");
                     System.out.println("------------------------------------");
-                    System.out.println("You are in " + currentRoom.toString());
+                    System.out.println(currentRoom.toString());
                     System.out.println("------------------------------------");
                     System.out.println("");
                     System.out.print("[Type next move]: ");
                 }
                 case "help" -> Commands.menuLoop();
 
+              /*  case "take" -> Player.setItem();
+
+                case "drop" -> {
+
+
+                };
+
+                case "inventory", -> {
+
+                    System.out.println();
+
+                };
+*/
                 case "exit" -> {
                     System.out.println("""
                             

@@ -1,9 +1,17 @@
 package com.company;
 
+import java.util.ArrayList;
+
 import static com.company.Map.currentRoom;
 import static com.company.Map.requestedRoom;
 
 public class Player {
+
+    static ArrayList<Item> playerItems = new ArrayList<>();
+
+
+
+    /* ---------------------------------------------------------------------------- */
 
     // Checks if the direction given by the Player is possible.
     public static void wrongWay() {
@@ -70,5 +78,14 @@ public class Player {
             currentRoom = requestedRoom;
             rightWay();
         }
+    }
+
+    /*-------------------------------------------------------------------------------*/
+
+    public void addItem (Item item) {
+
+        playerItems.add(item);
+
+
     }
 }
