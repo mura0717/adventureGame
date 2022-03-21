@@ -7,7 +7,7 @@ import static com.company.Map.requestedRoom;
 
 public class Player {
 
-    static ArrayList<Item> playerItems = new ArrayList<>();
+    static ArrayList<ArrayList<Item>> playerItems = new ArrayList<>();
 
 
 
@@ -82,7 +82,7 @@ public class Player {
 
     /*-------------------------------------------------------------------------------*/
 
-    public void addItem (Item item) {
+    public void addItem (ArrayList<Item> item) {
 
         playerItems.add(item);
 

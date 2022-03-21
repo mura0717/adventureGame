@@ -5,9 +5,6 @@ import java.util.List;
 
 public class Room {
 
-    // Items i Rooms.
-    ArrayList<Item> roomItems = new ArrayList<>();
-
     // Room Variables
     private String name;
     private String description;
@@ -70,22 +67,18 @@ public class Room {
         return name + description;
     }
 
-
     /*-------------------------------------------------------------------------------*/
 
+    // Items i Rooms.
+    ArrayList<Item> roomItems = new ArrayList<>();
 
     public void addItem (Item item) {
-
         roomItems.add(item);
-
-
     }
 
     public void removeItem (Item item) {
 
         roomItems.remove(item);
-
-
     }
 
     public void containsItem (Item item) {

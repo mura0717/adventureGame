@@ -8,27 +8,11 @@ public class Item {
     private String itemName;
     private String itemDescription;
 
- public Item(String itemDescription, String itemName) {
+//Item Constructer
+public Item(String itemDescription, String itemName) {
      this.itemName = itemName;
      this.itemDescription = itemDescription;
-
-
-
  }
-
-/*
- // ??? Find Item metode ???
- public String[] findItem (String[] itemFind) {
-
-     String[] itemFindToDo = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
-
-return itemFind;
-
- }
-
-*/
-
- /* // Det var bare et forsøg på at lave Get og Set til Item classen/Objeket ??
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
@@ -38,8 +22,6 @@ return itemFind;
         return itemName;
     }
 
-
-
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
@@ -48,8 +30,25 @@ return itemFind;
         return itemDescription;
     }
 
+    String[] items = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
+    ArrayList<String> roomItems = new ArrayList<String>(List.of(items));
+
+    public void setItemsList(ArrayList<String> itemsList) {
+        this.roomItems = itemsList;
+    }
+    public ArrayList<String> getItemsList() {
+        return roomItems;
+    }
+    /*
+ // ??? Find Item Method ???
+ public String[] findItem (String[] itemName) {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"
+        return findItem;
+}
+     //String[] itemFindToDo = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
 
 */
+
+// Det var bare et forsøg på at lave Get og Set til Item classen/Objeket ??
 
     // Room toString
     public String toString() {
@@ -57,6 +56,4 @@ return itemFind;
                 
                 """ + itemName;
     }
-
-
 }

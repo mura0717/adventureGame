@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -38,26 +39,17 @@ public class RunGame {
 
                 case "take" -> {
 
-                    Player.playerItems.add(currentRoom.roomItems.indexOf());
-
-                  //  Player.playerItems = currentRoom.roomItems;
-
-                    System.out.println("You take the: " + currentRoom.roomItems.toString());
+                    Player.playerItems.add(currentRoom.roomItems);
+                    System.out.println("You take: " + currentRoom.roomItems.toString());
 
 
                 }
 
 
-
                 case "drop" -> {
 
-                    // Player.playerItems.remove("");
-
-                    // currentRoom.roomItems.add;
-
-                    // currentRoom.roomItems = Player.playerItems.remove("");
-
-                    System.out.println("You drop the: " + currentRoom.roomItems.toString());
+                    Player.playerItems.remove(currentRoom.roomItems);
+                    System.out.println("You drop: " + currentRoom.roomItems.toString());
 
                 }
 
