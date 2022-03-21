@@ -67,11 +67,12 @@ public class Room {
 
     // Room toString
     public String toString() {
-        return name + " - " + description;
+        return name + description;
     }
 
 
     /*-------------------------------------------------------------------------------*/
+
 
     public void addItem (Item item) {
 
@@ -79,6 +80,23 @@ public class Room {
 
 
     }
+
+    public void removeItem (Item item) {
+
+        roomItems.remove(item);
+
+
+    }
+
+    public void containsItem (Item item) {
+
+        roomItems.remove(item);
+
+
+    }
+
+
+
 
 }
 

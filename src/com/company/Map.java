@@ -8,58 +8,74 @@ public class Map {
     public static void buildMap() {
         // Room Descriptions:
         Room room1 = new Room("Ground Zero", """
-            You see something shiny in the corner.
-            You take some steps further to see what it is.
-            And you realize that it is a KEY.""");
+            
+            
+            Back to square one again? 
+            Feel like I forgot something here? """);
 
         Room room2 = new Room("Corridor", """
-            A long corridor with a door at the other end.
-            As you walk towards that door, you see a bloody knife on the floor.""");
+            
+            
+            A long corridor with a door,
+            at the other end. """);
 
         Room room3 = new Room("Dark Room", """
+            
+            
             You can't see anything, it is completely dark. 
-            You can't help but think: 'I wish I had a light.'""");
+            You can't help but think: 'I wish I had a light.' """);
 
         Room room4 = new Room("Storage", """
+            
+            
             You find yourself in a big storage.
-            There are stacks of shelves around.
-            On of the shelves, you get a glimpse of a box.
-            On the box it writes FLASHLIGHTS.""");
+            There are stacks of shelves around. """);
 
         Room room5 = new Room("The Portal", """
+            
+            
             You see that there is a huge RING at the center.
             It looks like some kind of alien technology.
+            
             You carefully move closer to it and realize that there is button next to it.
-            You feel the urge to push the button but you are not sure.
-            Do you want to push the button?""");
+            
+            You feel the urge to push the button, but you are not sure.
+            Do you want to push the button? """);
 
         Room room6 = new Room("Cafeteria", """
+            
+            
             A huge empty cafeteria. There is a kitchen at the back.
-            Since you are hungry, you walk over to see if there is anything to eat.
-            You find two sandwiches left in the fridge.
-            You eat one and then consider if you should take the second one with you?""");
+            Since you are hungry, you walk over to see if there is anything to eat. """);
 
         Room room7 = new Room("Locker Room", """
+            
+            
             A room full of lockers.
             You walk pass them to check.
-            All of them are empty except the end that is at the end.
-            It is closed. You open it and see there is a key card in it.""");
+            All of them are empty except, the end locker. """);
 
         Room room8 = new Room("Command Center", """
+            
+            
             A room full of monitors.
             You come closer to look at the monitors.
             And you realize that they have been watching you all along.
+            
             Right at that moment, you get a glimpse of a shadow in the corner of your eye.
+            
             A Security Guard takes swing at you with a baton.
-            You dodge it but next time maybe you won't be that lucky.
-            What should you do?""");
+            You dodge it, but next time maybe, you won't be that lucky.
+            
+            What should you do? """);
 
         Room room9 = new Room("Toilets", """
+            
+            
             There is disgunting stench in the air.
-            You try to breathe but it is a difficult task.
-            You wish you had a gas mask but in this game baby.
-            You need to survive to check each and every toilet cabin to make sure you don's miss anything.
-            And you usual you see a METAL VALVE in the last cabin behind the flush tank.""");
+            You try to breathe, but it is a difficult task.
+            
+            You wish you had a gas mask, but not in this game baby! """);
 
         // Room Connections:
 
@@ -86,18 +102,58 @@ public class Map {
 
         // ITEM:
 
-        Item room3_Keycard = new Item("Keycard","A tiny and shiny key.");
-        Item room2_Knife = new Item("Knife","A bloddy knife");
-        Item room4_Flashlight = new Item("Flashlight","");
-        Item room6_Sandwich = new Item("Sandwich","");
-        Item room9_MetalValve = new Item("Metal valve","");
+        Item room1_Key = new Item(""" 
+                  A tiny and shiny metal key. """, """
+             
+                  --> ITEM: (KEY) <-- """);
+
+        Item room7_Keycard = new Item("""
+                 A mechanical electronic key. """, """
+                
+                 --> ITEM: (KEYCARD) <-- """);
+
+        Item room2_Knife = new Item("""
+                 Could use it, to defend for myself? """, """
+                
+                 --> ITEM: (KNIFE) <-- """);
+
+        Item room4_Flashlight = new Item("""
+                 It still functional, and bright! """, """
+                
+                 --> ITEM: (FLASHLIGHT) <-- """);
+
+        Item room6_Sandwich = new Item("""
+                 Gives +50 in HP, Yum! """, """
+                                
+                 --> ITEM: (SANDWICH) <--""");
+
+        Item room9_MetalValve = new Item("""
+                A weird shaped, metal valve. """, """
+                
+                --> ITEM: (METAL VALVE) <-- """);
+
+        Item room_Empty = new Item("(Nothing of interest) "," Look in the other rooms. ");
+
+        Item room_Dark = new Item("(Well... It's too dark to see.) "," The room needs to be more bright, to see anything. ");
+
+        Item room8_Guard = new Item("The security guard, looks mean, and act violent -","You can't fight back without a weapon.");
 
 
-        room3.addItem(room3_Keycard);
+
+
+
+        room5.addItem(room_Empty);
+        room8.addItem(room8_Guard);
+        room3.addItem(room_Dark);
+
+        room1.addItem(room1_Key);
+        room7.addItem(room7_Keycard);
         room2.addItem(room2_Knife);
         room4.addItem(room4_Flashlight);
         room6.addItem(room6_Sandwich);
         room9.addItem(room9_MetalValve);
+
+
     }
 
     public void setCurrentRoom(Room currentRoom) {

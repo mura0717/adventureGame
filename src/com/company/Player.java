@@ -21,7 +21,7 @@ public class Player {
         That way is blocked.
         ---------------------------------------------
         
-        Type again here]:
+        [Type again here]:
         """);
     }
 
@@ -88,4 +88,20 @@ public class Player {
 
 
     }
+
+
+    public void removeItem (Item item) {
+
+        playerItems.remove(item);
+
+
+    }
+
+    public void containsItem (Item item) {
+
+        playerItems.remove(item);
+
+
+    }
+
 }

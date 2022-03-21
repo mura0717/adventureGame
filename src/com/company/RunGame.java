@@ -13,7 +13,11 @@ public class RunGame {
         while (gameLoop) {
             String commandString = userInput.nextLine().toLowerCase(Locale.ROOT);
 
+
+
             switch (commandString) {
+
+
 
                 case "go north", "go n", "n", "north" -> Player.goNorth();
                 case "go south", "go s", "s", "south" -> Player.goSouth();
@@ -23,26 +27,53 @@ public class RunGame {
                 case "look" -> {
                     System.out.println("");
                     System.out.println("------------------------------------");
-                    System.out.println(currentRoom.toString());
+                    System.out.println(currentRoom.roomItems.toString());
                     System.out.println("------------------------------------");
                     System.out.println("");
                     System.out.print("[Type next move]: ");
                 }
+
                 case "help" -> Commands.menuLoop();
 
-              /*  case "take" -> Player.setItem();
+
+                case "take" -> {
+
+                    Player.playerItems.add(currentRoom.roomItems.indexOf());
+
+                  //  Player.playerItems = currentRoom.roomItems;
+
+                    System.out.println("You take the: " + currentRoom.roomItems.toString());
+
+
+                }
+
+
 
                 case "drop" -> {
 
+                    // Player.playerItems.remove("");
 
-                };
+                    // currentRoom.roomItems.add;
 
-                case "inventory", -> {
+                    // currentRoom.roomItems = Player.playerItems.remove("");
 
-                    System.out.println();
+                    System.out.println("You drop the: " + currentRoom.roomItems.toString());
 
-                };
-*/
+                }
+
+                case "inventory", "inv" -> {
+
+                    Player.playerItems.contains(Player.playerItems);
+
+                    System.out.println(Player.playerItems.toString());
+
+
+
+                }
+
+
+
+
                 case "exit" -> {
                     System.out.println("""
                             
@@ -67,6 +98,8 @@ public class RunGame {
                     
                     """);
                 }
+
+
             }
         }
     }
