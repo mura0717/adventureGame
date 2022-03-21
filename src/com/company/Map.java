@@ -108,7 +108,7 @@ public class Map {
                   --> ITEM: (KEY) <-- """);
 
         Item room7_Keycard = new Item("""
-                 A mechanical electronic key. """, """
+                 An electronic key card. """, """
                 
                  --> ITEM: (KEYCARD) <-- """);
 

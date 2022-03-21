@@ -30,8 +30,8 @@ public Item(String itemDescription, String itemName) {
         return itemDescription;
     }
 
-    String[] items = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
-    ArrayList<String> roomItems = new ArrayList<String>(List.of(items));
+    private String[] items = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
+    private ArrayList<String> roomItems = new ArrayList<String>(List.of(items));
 
     public void setItemsList(ArrayList<String> itemsList) {
         this.roomItems = itemsList;

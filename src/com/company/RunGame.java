@@ -36,35 +36,23 @@ public class RunGame {
 
                 case "help" -> Commands.menuLoop();
 
-
                 case "take" -> {
 
                     Player.playerItems.add(currentRoom.roomItems);
                     System.out.println("You take: " + currentRoom.roomItems.toString());
-
-
                 }
-
 
                 case "drop" -> {
 
-                    Player.playerItems.remove(currentRoom.roomItems);
-                    System.out.println("You drop: " + currentRoom.roomItems.toString());
-
+                    Player.playerItems.remove(new ArrayList<>());
+                    System.out.println("You drop: " + Player.playerItems.toString());
                 }
 
                 case "inventory", "inv" -> {
 
                     Player.playerItems.contains(Player.playerItems);
-
                     System.out.println(Player.playerItems.toString());
-
-
-
                 }
-
-
-
 
                 case "exit" -> {
                     System.out.println("""
@@ -90,7 +78,6 @@ public class RunGame {
                     
                     """);
                 }
-
 
             }
         }

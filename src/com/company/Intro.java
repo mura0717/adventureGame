@@ -12,7 +12,7 @@ public class Intro {
                   \\_/\\_/\\___|_\\__\\___/_|_|_\\___|  \\__\\___/  \\__|_||_\\___| /_/ \\_\\__,_|\\_/\\___|_||_\\__|\\_,_|_| \\___|
                 ---------------------------------------------------------------------------------------------------
                 """);
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         System.out.println("""
         You wake up dizzy in a room that you don't recognize.
         You know that you need to get out, but you don't know how.
@@ -20,6 +20,6 @@ public class Intro {
         
         ---------------------------------------------------------
         """);
-        Thread.sleep(5000); // 10000
+        Thread.sleep(4000);
     }
 }

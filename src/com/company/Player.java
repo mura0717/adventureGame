@@ -7,8 +7,6 @@ import static com.company.Map.requestedRoom;
 
 public class Player {
 
-    static ArrayList<ArrayList<Item>> playerItems = new ArrayList<>();
-
 
 
     /* ---------------------------------------------------------------------------- */
@@ -82,26 +80,19 @@ public class Player {
 
     /*-------------------------------------------------------------------------------*/
 
+    static ArrayList<ArrayList<Item>> playerItems = new ArrayList<>();
+
+
     public void addItem (ArrayList<Item> item) {
-
         playerItems.add(item);
-
-
     }
 
-
     public void removeItem (Item item) {
-
         playerItems.remove(item);
-
-
     }
 
     public void containsItem (Item item) {
-
-        playerItems.remove(item);
-
-
+        playerItems.contains(item);
     }
 
 }
