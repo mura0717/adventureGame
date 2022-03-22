@@ -14,7 +14,7 @@ public Item(String itemName, String itemDescription) {
      this.itemDescription = itemDescription;
  }
 //roomItems ArrayList
-private ArrayList<String> roomItems = new ArrayList<String>();
+
 
 //Item Setters
     public void setItemName(String itemName) {
@@ -23,9 +23,6 @@ private ArrayList<String> roomItems = new ArrayList<String>();
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
-    public void setItemsList(ArrayList<String> itemsList) {
-        this.roomItems = itemsList;
-    }
 //Item Getters
     public String getItemDescription() {
         return itemDescription;
@@ -33,9 +30,7 @@ private ArrayList<String> roomItems = new ArrayList<String>();
     public String getItemName() {
         return itemName;
     }
-    public ArrayList<String> getItemsList() {
-        return roomItems;
-    }
+
 
 /*
  // ??? Find Item Method ???

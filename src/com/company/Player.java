@@ -96,14 +96,19 @@ public class Player {
         playerItems.contains(item);
     }
 
-    public Item findItem(ArrayList<Item> itemName) {
+    public Item findItem(ArrayList<Item> items, String choice) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItemName().equals(choice)) {
+                return items.get(i);
+            }
+        }
+        return null;
+    }
        /* for (Item item: currentRoom.getRoomItems()) {
         if (item.getItemName().equals(itemName)) {
             System.out.println("heyye");
             return item;}
     }*/
-        return itemName.get(0);
-    }
     /*{
         for (int i = 0; i < currentRoom.getRoomItems().size(); i++) {
             if (Item.getItemName().equals(itemName)) ;
@@ -113,15 +118,15 @@ public class Player {
     }
     */
 
-    public void takeItem(ArrayList<Item> itemName) {
-        Item item = findItem(itemName);
+    public void takeItem(ArrayList<Item> items, String choice) {
+        Item item = findItem(items, choice);
         playerItems.add(item);
-        System.out.println(playerItems.size());
+        System.out.println(item.getItemName());
         currentRoom.removeItem(item);
     }
 
-    public void dropItem(ArrayList<Item> itemName) {
-        Item item = findItem(itemName);
+    public void dropItem(ArrayList<Item> items, String choice) {
+        Item item = findItem(items, choice);
         currentRoom.addItem(item);
         playerItems.remove(item);
     }

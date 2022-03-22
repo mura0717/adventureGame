@@ -35,19 +35,29 @@ public class RunGame {
                     System.out.println("------------------------------------");
                     System.out.println("");
                     System.out.print("[Type next move]: ");
+                    String doubleInput = userInput.nextLine();
+
+                    makeAChoice(choice);
+
+
+
+
+
                 }
 
                 case "help" -> Commands.menuLoop();
 
                 case "take" -> {
+                    System.out.println("What would you like to take??");
 
-                    player.takeItem(currentRoom.getRoomItems());
+                    player.takeItem(currentRoom.getRoomItems(), userInput.nextLine());
                     System.out.println("You took the: " + player.getPlayerItems());
                 }
 
                 case "drop" -> {
+                    System.out.println("What would you like to drop??");
 
-                    player.dropItem(currentRoom.getRoomItems());
+                    player.dropItem(currentRoom.getRoomItems(), userInput.nextLine());
                     System.out.println("You dropped the: " + player.getPlayerItems());
                 }
 
@@ -84,5 +94,14 @@ public class RunGame {
 
             }
         }
+    }
+    public void makeAChoice(String choice){
+        choice
+
+
+        if (choice.)
+
+        take();
+        drop();
     }
 }
