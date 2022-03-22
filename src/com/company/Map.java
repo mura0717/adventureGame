@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Map {
 
     public static Room currentRoom;
@@ -100,7 +102,16 @@ public class Map {
 
         currentRoom = room1;
 
-        // ITEM:
+        // Item Locations:
+
+        room1.addItem(new Item("KEY", "A tiny and shiny metal key."));
+        room7.addItem(new Item("KEYCARD", "An electronic key card."));
+        room2.addItem(new Item("KNIFE","Could use it, to defend for myself?"));
+        room4.addItem(new Item("FLASHLIGHT", "It still functional, and bright!"));
+        room6.addItem(new Item("SANDWICH", "Gives +50 in HP, Yum!"));
+        room9.addItem(new Item("METAL VALVE", "A weird shaped, metal valve."));
+
+        // Items:
 
         Item room1_Key = new Item(""" 
                   A tiny and shiny metal key. """, """
@@ -132,28 +143,6 @@ public class Map {
                 
                 --> ITEM: (METAL VALVE) <-- """);
 
-        Item room_Empty = new Item("(Nothing of interest) "," Look in the other rooms. ");
-
-        Item room_Dark = new Item("(Well... It's too dark to see.) "," The room needs to be more bright, to see anything. ");
-
-        Item room8_Guard = new Item("The security guard, looks mean, and act violent -","You can't fight back without a weapon.");
-
-
-
-
-
-        room5.addItem(room_Empty);
-        room8.addItem(room8_Guard);
-        room3.addItem(room_Dark);
-
-        room1.addItem(room1_Key);
-        room7.addItem(room7_Keycard);
-        room2.addItem(room2_Knife);
-        room4.addItem(room4_Flashlight);
-        room6.addItem(room6_Sandwich);
-        room9.addItem(room9_MetalValve);
-
-
     }
 
     public void setCurrentRoom(Room currentRoom) {
@@ -165,5 +154,15 @@ public class Map {
     }
 }
 
+//Item room_Empty = new Item("(Nothing of interest) "," Look in the other rooms. ");
+
+//Item room_Dark = new Item("(Well... It's too dark to see.) "," The room needs to be more bright, to see anything. ");
+
+// Item room8_Guard = new Item("The security guard, looks mean, and act violent -","You can't fight back without a weapon.");
+
+
+//room5.addItem(room_Empty);
+//room8.addItem(room8_Guard);
+//room3.addItem(room_Dark);
 
 

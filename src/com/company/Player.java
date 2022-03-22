@@ -7,8 +7,6 @@ import static com.company.Map.requestedRoom;
 
 public class Player {
 
-
-
     /* ---------------------------------------------------------------------------- */
 
     // Checks if the direction given by the Player is possible.
@@ -80,10 +78,13 @@ public class Player {
 
     /*-------------------------------------------------------------------------------*/
 
-    static ArrayList<ArrayList<Item>> playerItems = new ArrayList<>();
+    private ArrayList<Item> playerItems = new ArrayList<>();
 
+    public ArrayList<Item> getPlayerItems() {
+        return playerItems;
+    }
 
-    public void addItem (ArrayList<Item> item) {
+    public void addItem (Item item) {
         playerItems.add(item);
     }
 
@@ -91,8 +92,36 @@ public class Player {
         playerItems.remove(item);
     }
 
-    public void containsItem (Item item) {
+    public void containsItem (ArrayList<Item> item) {
         playerItems.contains(item);
+    }
+
+    public Item findItem(ArrayList<Item> itemName) {
+        for (Item item: currentRoom.getRoomItems()) {
+        if (item.getItemName().equals(itemName))
+            return item;
+    }
+        return null;
+    }
+    /*{
+        for (int i = 0; i < currentRoom.getRoomItems().size(); i++) {
+            if (Item.getItemName().equals(itemName)) ;
+            return itemName;
+        }
+        return null;
+    }
+    */
+
+    public void takeItem(ArrayList<Item> itemName) {
+        Item item = findItem(itemName);
+        playerItems.add(item);
+        currentRoom.removeItem(item);
+    }
+
+    public void dropItem(ArrayList<Item> itemName) {
+        Item item = findItem(itemName);
+        currentRoom.addItem(item);
+        playerItems.remove(item);
     }
 
 }

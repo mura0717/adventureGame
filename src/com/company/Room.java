@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Room {
 
@@ -69,8 +68,13 @@ public class Room {
 
     /*-------------------------------------------------------------------------------*/
 
-    // Items i Rooms.
-    ArrayList<Item> roomItems = new ArrayList<>();
+    // Items in Rooms.
+
+    private ArrayList<Item> roomItems = new ArrayList<>();
+
+    public ArrayList<Item> getRoomItems() {
+        return roomItems;
+    }
 
     public void addItem (Item item) {
         roomItems.add(item);
