@@ -97,11 +97,12 @@ public class Player {
     }
 
     public Item findItem(ArrayList<Item> itemName) {
-        for (Item item: currentRoom.getRoomItems()) {
-        if (item.getItemName().equals(itemName))
-            return item;
-    }
-        return null;
+       /* for (Item item: currentRoom.getRoomItems()) {
+        if (item.getItemName().equals(itemName)) {
+            System.out.println("heyye");
+            return item;}
+    }*/
+        return itemName.get(0);
     }
     /*{
         for (int i = 0; i < currentRoom.getRoomItems().size(); i++) {
@@ -115,6 +116,7 @@ public class Player {
     public void takeItem(ArrayList<Item> itemName) {
         Item item = findItem(itemName);
         playerItems.add(item);
+        System.out.println(playerItems.size());
         currentRoom.removeItem(item);
     }
 

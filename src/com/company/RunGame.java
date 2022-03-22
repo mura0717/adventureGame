@@ -42,7 +42,7 @@ public class RunGame {
                 case "take" -> {
 
                     player.takeItem(currentRoom.getRoomItems());
-                    System.out.println("You took the: " + currentRoom.getRoomItems());
+                    System.out.println("You took the: " + player.getPlayerItems());
                 }
 
                 case "drop" -> {
