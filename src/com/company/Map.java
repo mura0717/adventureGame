@@ -104,44 +104,44 @@ public class Map {
 
         // Item Locations:
 
-        room1.addItem(new Item("KEY", "A tiny and shiny metal key."));
-        room7.addItem(new Item("KEYCARD", "An electronic key card."));
-        room2.addItem(new Item("KNIFE","Could use it, to defend for myself?"));
-        room4.addItem(new Item("FLASHLIGHT", "It still functional, and bright!"));
-        room6.addItem(new Item("SANDWICH", "Gives +50 in HP, Yum!"));
-        room9.addItem(new Item("METAL VALVE", "A weird shaped, metal valve."));
+        room1.addItem(new Item("key", "A tiny and shiny metal key."));
+        room7.addItem(new Item("keycard", "An electronic key card."));
+        room2.addItem(new Item("knife","Could use it, to defend for myself?"));
+        room4.addItem(new Item("flashlight", "It still functional, and bright!"));
+        room6.addItem(new Item("sandwich", "Gives +50 in HP, Yum!"));
+        room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
 
         // Items:
 
         Item room1_Key = new Item(""" 
                   A tiny and shiny metal key. """, """
              
-                  --> ITEM: (KEY) <-- """);
+                  --> ITEM: (key) <-- """);
 
         Item room7_Keycard = new Item("""
                  An electronic key card. """, """
                 
-                 --> ITEM: (KEYCARD) <-- """);
+                 --> ITEM: (keycard) <-- """);
 
         Item room2_Knife = new Item("""
                  Could use it, to defend for myself? """, """
                 
-                 --> ITEM: (KNIFE) <-- """);
+                 --> ITEM: (knife) <-- """);
 
         Item room4_Flashlight = new Item("""
                  It still functional, and bright! """, """
                 
-                 --> ITEM: (FLASHLIGHT) <-- """);
+                 --> ITEM: (flashlight) <-- """);
 
         Item room6_Sandwich = new Item("""
                  Gives +50 in HP, Yum! """, """
                                 
-                 --> ITEM: (SANDWICH) <--""");
+                 --> ITEM: (sandwich) <--""");
 
         Item room9_MetalValve = new Item("""
                 A weird shaped, metal valve. """, """
                 
-                --> ITEM: (METAL VALVE) <-- """);
+                --> ITEM: (metal valve) <-- """);
 
     }
 
