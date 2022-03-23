@@ -2,15 +2,16 @@ package com.company;
 
 import java.util.ArrayList;
 
-import static com.company.Map.currentRoom;
-import static com.company.Map.requestedRoom;
+// import static com.company.Map.currentRoom;
+// import static com.company.Map.requestedRoom;
 
 public class Player {
+private Room currentRoom;
 
     /* ---------------------------------------------------------------------------- */
 
     // Checks if the direction given by the Player is possible.
-    public static void wrongWay() {
+    public void wrongWay() {
         System.out.print("""
         
         ---------------------------------------------
@@ -21,7 +22,7 @@ public class Player {
         """);
     }
 
-    public static void rightWay() {
+    public void rightWay() {
         System.out.println("");
         System.out.println("-----------------------------------");
         System.out.println("Entering: " + currentRoom.toString());
@@ -32,8 +33,8 @@ public class Player {
 
 
     // Player Movement
-    public static void goSouth() {
-        requestedRoom = currentRoom.getSouth();
+    public void goSouth() {
+        Room requestedRoom = currentRoom.getSouth();
         if (requestedRoom == null) {
             wrongWay();
         }
@@ -43,8 +44,8 @@ public class Player {
         }
     }
 
-    public static void goNorth() {
-        requestedRoom = currentRoom.getNorth();
+    public void goNorth() {
+        Room requestedRoom = currentRoom.getNorth();
         if (requestedRoom == null) {
             wrongWay();
         }
@@ -54,8 +55,8 @@ public class Player {
         }
     }
 
-    public static void goEast () {
-        requestedRoom = currentRoom.getEast();
+    public void goEast () {
+        Room requestedRoom = currentRoom.getEast();
         if (requestedRoom == null) {
             wrongWay();
         }
@@ -65,8 +66,8 @@ public class Player {
         }
     }
 
-    public static void goWest () {
-        requestedRoom = currentRoom.getWest();
+    public void goWest () {
+       Room requestedRoom = currentRoom.getWest();
         if (requestedRoom == null) {
             wrongWay();
         }
@@ -83,7 +84,7 @@ public class Player {
     public ArrayList<Item> getPlayerItems() {
         return playerItems;
     }
-
+/*
     public void addItem (Item item) {
         playerItems.add(item);
     }
@@ -95,7 +96,8 @@ public class Player {
     public void containsItem (ArrayList<Item> item) {
         playerItems.contains(item);
     }
-
+*/
+    /*
     public Item findItem(ArrayList<Item> items, String choice) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getItemName().equals(choice)) {
@@ -104,6 +106,17 @@ public class Player {
         }
         return null;
     }
+*/
+    public Item findItem(String choice) {
+        ArrayList<Item> items = currentRoom.getRoomItems();
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItemName().equals(choice)) {
+                return items.get(i);
+            }
+        }
+        return null;
+    }
+
        /* for (Item item: currentRoom.getRoomItems()) {
         if (item.getItemName().equals(itemName)) {
             System.out.println("heyye");
@@ -118,17 +131,47 @@ public class Player {
     }
     */
 
+    public void takeItem(String choice) {
+        Item item = findItem(choice);
+        playerItems.add(item);
+        // System.out.println(item.getItemName());
+        currentRoom.removeItem(item);
+
+    }
+/*
     public void takeItem(ArrayList<Item> items, String choice) {
         Item item = findItem(items, choice);
         playerItems.add(item);
-        System.out.println(item.getItemName());
+        // System.out.println(item.getItemName());
         currentRoom.removeItem(item);
     }
-
+*/ /*
     public void dropItem(ArrayList<Item> items, String choice) {
         Item item = findItem(items, choice);
         currentRoom.addItem(item);
+       // System.out.println(item.getItemName());
         playerItems.remove(item);
     }
+*/
+    public void dropItem(String choice) {
+        Item item = findItem(choice);
+        currentRoom.addItem(item);
+        // System.out.println(item.getItemName());
+        playerItems.remove(item);
+
+    }
+
+
+    public void setRoom(Room startRoom) {
+
+        currentRoom = startRoom;
+
+    }
+
+    public Room getCurrentRoom() {
+
+        return currentRoom;
+    }
+
 
 }

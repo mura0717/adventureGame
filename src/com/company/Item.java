@@ -43,8 +43,8 @@ public Item(String itemName, String itemDescription) {
 
 // Item toString
     public String toString() {
-        return itemDescription + """
+        return itemName + " - " + itemDescription;
                 
-                """ + itemName;
+
     }
 }

@@ -1,8 +1,7 @@
 package com.company;
 public class Intro {
 
-    public static void startGame() throws InterruptedException {
-        Map.buildMap();
+    public void startGame() throws InterruptedException {
         System.out.println("""
                 
                 ---------------------------------------------------------------------------------------------------

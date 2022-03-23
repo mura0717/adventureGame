@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Map {
 
-    public static Room currentRoom;
-    public static Room requestedRoom;
+    public Room currentRoom;
+   // public Room requestedRoom;
 
-    public static void buildMap() {
+    public void buildMap() {
         // Room Descriptions:
         Room room1 = new Room("Ground Zero", """
             
@@ -112,7 +112,7 @@ public class Map {
         room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
 
         // Items:
-
+/*
         Item room1_Key = new Item(""" 
                   A tiny and shiny metal key. """, """
              
@@ -142,15 +142,20 @@ public class Map {
                 A weird shaped, metal valve. """, """
                 
                 --> ITEM: (metal valve) <-- """);
-
+*/
     }
-
+/*
     public void setCurrentRoom(Room currentRoom) {
         Map.currentRoom = currentRoom;
     }
 
     public void setRequestedRoom(Room requestedRoom) {
         Map.requestedRoom = requestedRoom;
+    }
+    */
+    public Room getCurrentRoom() {
+
+        return currentRoom;
     }
 }
 
