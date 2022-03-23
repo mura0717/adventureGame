@@ -101,6 +101,7 @@ private Map map = new Map(); {
                         System.out.println("");
                         System.out.println("(Nothing of interest) - Look in the other rooms.");
                         System.out.println("");
+
                     } else {
 
                                 System.out.println("Which item will you take: ");
@@ -128,35 +129,32 @@ private Map map = new Map(); {
 
                 case "drop" -> {
 
-                    System.out.println("What would you like to drop??");
+                    if (player.playerHasAnyItem() == false) {
+
+                        System.out.println("");
+                        System.out.println("(Nothing to drop).");
+                        System.out.println("");
+
+                    } else {
+
+                        System.out.println("What would you like to drop??");
 
 
-                    if ("drop".equals(commandString)) {
-
-                        String choice = userInput.nextLine();
-                        player.dropItem(choice);
-                        dropPlayerItems();
-                        System.out.print("[Type here]: ");
+                            String choice = userInput.nextLine();
+                            player.dropItem(choice);
+                            dropPlayerItems();
+                            System.out.print("[Type here]: ");
 
 
-                        // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
+                            // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
                         /* System.out.println("");
                         System.out.println("You took the: " + player.getPlayerItems());
                         System.out.println("");
                         System.out.print("[Type here]: "); */
 
 
-                    } else {
-
-                        System.out.println("");
-                        System.out.println("(Nothing of interest) - Look in the other rooms.");
-                        System.out.println("");
-                        System.out.print("[Type here]: ");
-
-                        playGame();
-
                     }
-
+                }
 
 
                    // player.dropItem(player.getCurrentRoom().getRoomItems(), userInput.nextLine());
@@ -165,7 +163,7 @@ private Map map = new Map(); {
                    // System.out.println("");
                    // System.out.print("[Type here]: ");
 
-                }
+
 
                 case "inventory", "inv" -> {
 

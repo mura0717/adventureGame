@@ -183,5 +183,12 @@ private Room currentRoom;
         return currentRoom;
     }
 
+    public boolean playerHasAnyItem() {
+        boolean playerAnyItem = playerItems.size() > 0;
+
+        return playerAnyItem;
+    }
+
+
 
 }
