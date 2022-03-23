@@ -85,7 +85,13 @@ public class Room {
     }
 
     public void containsItem (Item item) {
-        roomItems.remove(item);
+        roomItems.contains(item);
+    }
+
+    public boolean hasAnyItem() {
+        boolean anyItem = roomItems.size() > 0;
+
+        return anyItem;
     }
 
 }

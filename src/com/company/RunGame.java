@@ -96,48 +96,34 @@ private Map map = new Map(); {
 
                 case "take" -> {
 
-                    System.out.println("Which item will you take: ");
+                    if (map.currentRoom.hasAnyItem() == false) {
 
-                    // makeAChoice(choice);
+                        System.out.println("");
+                        System.out.println("(Nothing of interest) - Look in the other rooms.");
+                        System.out.println("");
+                    } else {
 
-/*
-                    System.out.println("What would you like to take??");
+                                System.out.println("Which item will you take: ");
 
-                    player.takeItem(currentRoom.getRoomItems(), userInput.nextLine());
-                    System.out.println("You took the: " + player.getPlayerItems());
-
-                    System.out.println("");
-                    System.out.print("[Type here]: ");
-*/
-
-                    if ("take".equals(commandString)) {
-
-                        String choice = userInput.nextLine();
-                        player.takeItem(choice);
-                        takePlayerItems();
-                        System.out.print("[Type here]: ");
+                                String choice = userInput.nextLine();
+                                player.takeItem(choice);
+                                takePlayerItems();
+                                System.out.print("[Type here]: ");
 
 
-                        // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
+                                // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
                         /* System.out.println("");
                         System.out.println("You took the: " + player.getPlayerItems());
                         System.out.println("");
                         System.out.print("[Type here]: "); */
 
 
-                    } else {
 
+                            }
 
-                        System.out.println("");
-                        System.out.println("(Nothing of interest) - Look in the other rooms.");
-                        System.out.println("");
-                        System.out.print("[Type here]: ");
-
-                        playGame();
-
-                    }
 
                   //  !equals("take " + player.getPlayerItems())
+
                 }
 
                 case "drop" -> {

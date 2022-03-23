@@ -152,7 +152,17 @@ private Room currentRoom;
        // System.out.println(item.getItemName());
         playerItems.remove(item);
     }
+
+
 */
+    public void noItem(String choice) {
+        Item item = findItem(choice);
+        currentRoom.removeItem(item);
+
+
+    }
+
+
     public void dropItem(String choice) {
         Item item = findItem(choice);
         currentRoom.addItem(item);
