@@ -228,20 +228,23 @@ private Map map = new Map(); {
         }
     }
 
-        private void dropPlayerItems() {
+        private Item dropPlayerItems() {
             ArrayList<Item> items = player.getPlayerItems();
             for (int i = 0; i < items.size(); i++) {
-                System.out.println("");
-                System.out.println("You drop the:   " + items.get(i));
-                System.out.println("");
-              //  System.out.print("[Type here]: ");
+                Item temp = player.getPlayerItems().get(i);
+                if (temp.getItemName().equals(items)) {
+                    items.remove(temp);
+
+                    System.out.println("");
+                    System.out.println("You drop the:   " + items.get(i));
+                    System.out.println("");
+
+                }
 
             }
 
-
+            return null;
         }
-
-
 
 
     }

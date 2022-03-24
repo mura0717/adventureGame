@@ -6,8 +6,13 @@ import java.util.ArrayList;
 // import static com.company.Map.requestedRoom;
 
 public class Player {
-private Room currentRoom;
 
+    private Room currentRoom;
+    private ArrayList<Item> playerItems = new ArrayList<>();
+
+    public ArrayList<Item> getPlayerItems() {
+        return playerItems;
+    }
     /* ---------------------------------------------------------------------------- */
 
     // Checks if the direction given by the Player is possible.
@@ -79,98 +84,30 @@ private Room currentRoom;
 
     /*-------------------------------------------------------------------------------*/
 
-    private ArrayList<Item> playerItems = new ArrayList<>();
-
-    public ArrayList<Item> getPlayerItems() {
-        return playerItems;
-    }
-/*
-    public void addItem (Item item) {
-        playerItems.add(item);
-    }
-
-    public void removeItem (Item item) {
-        playerItems.remove(item);
-    }
-
-    public void containsItem (ArrayList<Item> item) {
-        playerItems.contains(item);
-    }
-*/
-    /*
-    public Item findItem(ArrayList<Item> items, String choice) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getItemName().equals(choice)) {
-                return items.get(i);
-            }
-        }
-        return null;
-    }
-*/
-    public Item findItem(String choice) {
+    public Item findItem(String itemName) {
         ArrayList<Item> items = currentRoom.getRoomItems();
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getItemName().equals(choice)) {
+            if (items.get(i).getItemName().equals(itemName)) {
                 return items.get(i);
             }
         }
         return null;
     }
-
-       /* for (Item item: currentRoom.getRoomItems()) {
-        if (item.getItemName().equals(itemName)) {
-            System.out.println("heyye");
-            return item;}
-    }*/
-    /*{
-        for (int i = 0; i < currentRoom.getRoomItems().size(); i++) {
-            if (Item.getItemName().equals(itemName)) ;
-            return itemName;
-        }
-        return null;
-    }
-    */
-
-    public void takeItem(String choice) {
-        Item item = findItem(choice);
+    public void takeItem(String foundItem) {
+        Item item = findItem(foundItem);
         playerItems.add(item);
-        // System.out.println(item.getItemName());
-        currentRoom.removeItem(item);
-
-    }
-/*
-    public void takeItem(ArrayList<Item> items, String choice) {
-        Item item = findItem(items, choice);
-        playerItems.add(item);
-        // System.out.println(item.getItemName());
         currentRoom.removeItem(item);
     }
-*/ /*
-    public void dropItem(ArrayList<Item> items, String choice) {
-        Item item = findItem(items, choice);
+    public void dropItem(String foundItem) {
+        Item item = findItem(foundItem);
         currentRoom.addItem(item);
-       // System.out.println(item.getItemName());
         playerItems.remove(item);
     }
 
-
-*/
-    public void noItem(String choice) {
-        Item item = findItem(choice);
-        currentRoom.removeItem(item);
-
-
+    public boolean playerHasAnyItem() {
+        boolean playerAnyItem = playerItems.size() > 0;
+        return playerAnyItem;
     }
-
-
-    public void dropItem(String choice) {
-        Item item = findItem(choice);
-        currentRoom.addItem(item);
-        // System.out.println(item.getItemName());
-        playerItems.remove(item);
-
-    }
-
 
     public void setRoom(Room startRoom) {
 
@@ -182,13 +119,4 @@ private Room currentRoom;
 
         return currentRoom;
     }
-
-    public boolean playerHasAnyItem() {
-        boolean playerAnyItem = playerItems.size() > 0;
-
-        return playerAnyItem;
-    }
-
-
-
 }

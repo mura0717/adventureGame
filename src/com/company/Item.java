@@ -13,8 +13,6 @@ public Item(String itemName, String itemDescription) {
      this.itemName = itemName;
      this.itemDescription = itemDescription;
  }
-//roomItems ArrayList
-
 
 //Item Setters
     public void setItemName(String itemName) {
@@ -31,7 +29,6 @@ public Item(String itemName, String itemDescription) {
         return itemName;
     }
 
-
 /*
  // ??? Find Item Method ???
  public String[] findItem (String[] itemName) {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"
@@ -46,5 +43,8 @@ public Item(String itemName, String itemDescription) {
         return itemName + " - " + itemDescription;
                 
 
+    }
+
+    public void remove(Item temp) {
     }
 }

@@ -15,6 +15,8 @@ public class Map {
             Back to square one again? 
             Feel like I forgot something here? """);
 
+
+
         Room room2 = new Room("Corridor", """
             
             
@@ -104,7 +106,7 @@ public class Map {
 
         // Item Locations:
 
-        room1.addItem(new Item("key", "A tiny and shiny metal key."));
+        room1.addItem(new Item("key", "A shiny metal key."));
         room7.addItem(new Item("keycard", "An electronic key card."));
         room2.addItem(new Item("knife","Could use it, to defend for myself?"));
         room4.addItem(new Item("flashlight", "It still functional, and bright!"));
@@ -112,6 +114,7 @@ public class Map {
         room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
 
         // Items:
+
 /*
         Item room1_Key = new Item(""" 
                   A tiny and shiny metal key. """, """

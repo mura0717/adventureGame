@@ -11,12 +11,14 @@ public class Room {
     private Room west;
     private Room north;
     private Room south;
+    private ArrayList<Item> roomItems = new ArrayList<>();
 
 
     // Room Constructor
     public Room(String name, String description){
         this.name = name;
         this.description = description;
+        this.roomItems = new ArrayList<>();
     }
     // Room Setters
     public void setEast(Room east) {
@@ -68,29 +70,27 @@ public class Room {
 
     /*-------------------------------------------------------------------------------*/
 
-    // Items in Rooms.
-
-    private ArrayList<Item> roomItems = new ArrayList<>();
+    //roomItems ArrayList
 
     public ArrayList<Item> getRoomItems() {
         return roomItems;
-    }
+    } //roomItems Getter
 
     public void addItem (Item item) {
         roomItems.add(item);
     }
 
-    public void removeItem (Item item) {
-        roomItems.remove(item);
+    public Room removeItem (Item item) {
+        for (int i = 0; i < roomItems.size(); i++) {
+            Item temp = roomItems.get(i);
+            if (temp.getItemName().equals(item)) {
+                 item.remove(temp);
+            }
+        }
+        return null;
     }
-
-    public void containsItem (Item item) {
-        roomItems.contains(item);
-    }
-
     public boolean hasAnyItem() {
         boolean anyItem = roomItems.size() > 0;
-
         return anyItem;
     }
 
