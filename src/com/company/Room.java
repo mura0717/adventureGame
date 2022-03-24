@@ -11,7 +11,7 @@ public class Room {
     private Room west;
     private Room north;
     private Room south;
-    private ArrayList<Item> roomItems = new ArrayList<>();
+    private ArrayList<Item> roomItems;
 
 
     // Room Constructor

@@ -18,7 +18,7 @@ public class Commands {
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
-                [Type here]:            """);
+                [Type here]: """);
 
     }
 }
