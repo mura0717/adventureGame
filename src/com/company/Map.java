@@ -6,7 +6,17 @@ import java.util.List;
 public class Map {
 
     public Room currentRoom;
-   //public Room requestedRoom;
+
+    public Room getCurrentRoom() {
+       return currentRoom;
+   }
+    //private String itemsList;
+
+    //Items Array List
+    //ArrayList <Item> items = new ArrayList <> (List.of(itemsList));
+
+
+
 
     public void buildMap() {
     // Room Descriptions:
@@ -105,7 +115,7 @@ public class Map {
 
         currentRoom = room1;
 
-        // Item Locations:
+        // Items & Their Locations:
 
         room1.addItem(new Item("key", "A shiny metal key."));
         room7.addItem(new Item("keycard", "An electronic key card."));
@@ -114,7 +124,6 @@ public class Map {
         room6.addItem(new Item("sandwich", "Gives +50 in HP, Yum!"));
         room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
 
-        // Items:
 
 /*
         Item room1_Key = new Item(""" 
@@ -158,9 +167,6 @@ public class Map {
     }
     */
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
 }
 
 //Item room_Empty = new Item("(Nothing of interest) "," Look in the other rooms. ");

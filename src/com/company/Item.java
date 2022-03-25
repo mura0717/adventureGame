@@ -7,11 +7,13 @@ public class Item {
 
     private String itemName;
     private String itemDescription;
+    private ArrayList <Item> items = new ArrayList();
 
 //Item Constructer
 public Item(String itemName, String itemDescription) {
      this.itemName = itemName;
      this.itemDescription = itemDescription;
+     this.items = items;
  }
 
 //Item Setters
@@ -29,15 +31,6 @@ public Item(String itemName, String itemDescription) {
         return itemName;
     }
 
-/*
- // ??? Find Item Method ???
- public String[] findItem (String[] itemName) {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"
-        return findItem;
-}
- String[] itemFindToDo = {"KEY", "KEYCARD", "KNIFE", "FLASHLIGHT", "SANDWICH", "METAL VALVE"};
- Det var bare et forsøg på at lave Get og Set til Item classen/Objeket ??
-*/
-
 // Item toString
     public String toString() {
         return itemName + " - " + itemDescription;
@@ -45,7 +38,7 @@ public Item(String itemName, String itemDescription) {
 
     }
 
-    //not sure what this does:
+//not sure what this does:
     public void remove(Item temp) {
     }
 }

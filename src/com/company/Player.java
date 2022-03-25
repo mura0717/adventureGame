@@ -18,13 +18,13 @@ public class Player {
     // Checks if the direction given by the Player is possible.
     public void wrongWay() {
         System.out.print("""
-        
-        ---------------------------------------------
-        That way is blocked.
-        ---------------------------------------------
-        
-        [Type again here]:
-        """);
+                        
+                ---------------------------------------------
+                That way is blocked.
+                ---------------------------------------------
+                        
+                [Type again here]:
+                """);
     }
 
     public void rightWay() {
@@ -42,8 +42,7 @@ public class Player {
         Room requestedRoom = currentRoom.getSouth();
         if (requestedRoom == null) {
             wrongWay();
-        }
-        else {
+        } else {
             currentRoom = requestedRoom;
             rightWay();
         }
@@ -53,30 +52,27 @@ public class Player {
         Room requestedRoom = currentRoom.getNorth();
         if (requestedRoom == null) {
             wrongWay();
-        }
-        else {
+        } else {
             currentRoom = requestedRoom;
             rightWay();
         }
     }
 
-    public void goEast () {
+    public void goEast() {
         Room requestedRoom = currentRoom.getEast();
         if (requestedRoom == null) {
             wrongWay();
-        }
-        else {
+        } else {
             currentRoom = requestedRoom;
             rightWay();
         }
     }
 
-    public void goWest () {
-       Room requestedRoom = currentRoom.getWest();
+    public void goWest() {
+        Room requestedRoom = currentRoom.getWest();
         if (requestedRoom == null) {
             wrongWay();
-        }
-        else {
+        } else {
             currentRoom = requestedRoom;
             rightWay();
         }
@@ -84,7 +80,7 @@ public class Player {
 
     /*-------------------------------------------------------------------------------*/
 
-    public Item findItem(String itemName) {
+    public Item findRoomItem(String itemName) {
         ArrayList<Item> items = currentRoom.getRoomItems();
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getItemName().equals(itemName)) {
@@ -93,30 +89,51 @@ public class Player {
         }
         return null;
     }
-    public void takeItem(String foundItem) {
-        Item item = findItem(foundItem);
-        playerItems.add(item);
-        currentRoom.removeItem(item);
-    }
-    public void dropItem(String foundItem) {
-        Item item = findItem(foundItem);
-        currentRoom.addItem(item);
-        playerItems.remove(item);
-    }
 
-    public boolean playerHasAnyItem() {
-        boolean playerAnyItem = playerItems.size() > 0;
-        return playerAnyItem;
+    public Item findPlayerItem(String itemName) {
+        ArrayList<Item> items = playerItems;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItemName().equals(itemName)) {
+                return items.get(i);
+            }
+        }
+        return null;
     }
 
-    public void setRoom(Room startRoom) {
-
-        currentRoom = startRoom;
-
+    public boolean takeItem(String itemName) {
+        Item item = findRoomItem(itemName);
+        // item kan være null - hvis der ikke er noget 'foundItem' i rummmet
+        if (item == null) {
+            return false;
+            //  System.out.println("No item with name " +itemName +" in this room");
+        } else {
+            playerItems.add(item);
+            currentRoom.removeItem(item);
+            return true;
+        }
+    }
+    public boolean dropItem(String itemName) {
+        Item item = findPlayerItem(itemName);
+        if (item == null) {
+            return false;
+        } else {
+            currentRoom.addItem(item);
+            playerItems.remove(item);
+            return true;
+        }
     }
 
-    public Room getCurrentRoom() {
+    public boolean playerHasAnyItem () {
+            boolean playerAnyItem = playerItems.size() > 0;
+            return playerAnyItem;
+        }
 
-        return currentRoom;
+    public void setRoom (Room startRoom){
+            currentRoom = startRoom;
+        }
+
+    public Room getCurrentRoom () {
+            return currentRoom;
+        }
     }
-}
+

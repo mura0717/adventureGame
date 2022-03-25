@@ -8,9 +8,12 @@ import java.util.Scanner;
 
 public class RunGame {
 
-private Map map = new Map(); {
+    private Map map = new Map();
+
+    {
     }
-private Player player = new Player();
+
+    private Player player = new Player();
 
     public void playGame() {
 
@@ -28,8 +31,11 @@ private Player player = new Player();
             switch (commandString) {
 
                 case "go north", "go n", "n", "north" -> player.goNorth();
+
                 case "go south", "go s", "s", "south" -> player.goSouth();
+
                 case "go east", "go e", "e", "east" -> player.goEast();
+
                 case "go west", "go w", "w", "west" -> player.goWest();
 
                 case "look" -> {
@@ -56,7 +62,6 @@ private Player player = new Player();
 
 
                     }
-
 
 
                     // System.out.print("[Type next move]: ");
@@ -93,25 +98,16 @@ private Player player = new Player();
 
                         System.out.println("Which item will you take: ");
                         String userChoice = userInput.nextLine();
-                        player.takeItem(userChoice);
-                        takePlayerItems();
+                        boolean success = player.takeItem(userChoice);
+                        if (success) {
+                            System.out.println("Took item " + userChoice);
+                        } else {
+                            System.out.println("No item named " + userChoice + " in this room");
+                        }
+
                         System.out.print("[Type here]: ");
                     }
-                    /*else {
-                    System.out.println("Which item will you take: ");
-
-                    String choice = userInput.nextLine();
-                    player.takeItem(choice);
-                    takePlayerItems();
-                    System.out.print("[Type here]: ");
-*
-                    // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
-                    /* System.out.println("");
-                    System.out.println("You took the: " + player.getPlayerItems());
-                    System.out.println("");
-                    System.out.print("[Type here]: "); */
-                            }
-                  //  !equals("take " + player.getPlayerItems())
+                }
 
                 case "drop" -> {
 
@@ -125,27 +121,22 @@ private Player player = new Player();
 
                         System.out.println("What would you like to drop?");
                         String userChoice = userInput.nextLine();
-                        dropPlayerItems();
+                        boolean success = player.dropItem(userChoice);
+                        if (success) {
+                            System.out.println("You dropped: " + userChoice);
+                        } else {
+                            System.out.println("You can't drop because you don't have " + userChoice);
+                        }
                         player.dropItem(userChoice);
                         System.out.print("[Type here]: ");
                     }
                 }
-                    // player.takeItem(player.getCurrentRoom().getRoomItems(), choice);
-                    /* System.out.println("");
-                    System.out.println("You took the: " + player.getPlayerItems());
-                    System.out.println("");
-                    System.out.print("[Type here]: "); */
-
-                   // player.dropItem(player.getCurrentRoom().getRoomItems(), userInput.nextLine());
-                   // System.out.println("You dropped the: " + player.getPlayerItems());
-
-                   // System.out.println("");
-                   // System.out.print("[Type here]: ");
 
                 case "inventory", "inv" -> {
                     showInventory();
                     System.out.print("[Type next move here]: ");
                 }
+
                 case "exit" -> {
                     System.out.println("""
                                 
@@ -173,54 +164,19 @@ private Player player = new Player();
             }
         }
     }
-
     public void showInventory() {
         ArrayList<Item> items = player.getPlayerItems();
         for (int i = 0; i < items.size(); i++) {
             System.out.println("");
             System.out.println(items.get(i));
             System.out.println("");
-           // System.out.print("[Type here]: ");
-    }
+        }
         player.getPlayerItems().remove(items);
     }
+}
 
-    public void takePlayerItems() {
-        ArrayList<Item> items = map.getCurrentRoom().getRoomItems();
-        for (int i = 0; i < items.size(); i++) {
-            Item temp = map.getCurrentRoom().getRoomItems(Item items.get(i));
-            if (temp.getItemName().equals(items)) {
-                items.add(temp);
-            System.out.println("");
-            System.out.println("You took the:  " + items.get(i));
-            System.out.println("");
-            }
-            else
-            System.out.println("");
-            System.out.println("That item is not in the room.");
-            System.out.println("");
-        }
-        //return userChoice;
-    }
 
-    public void dropPlayerItems() {
-       ArrayList<Item> items = player.getPlayerItems();
-        for (int i = 0; i < items.size(); i++) {
-            Item temp = player.getPlayerItems().get(i);
 
-            if (temp.getItemName().equals(items)) {
-                items.remove(temp);
-                System.out.println("");
-                System.out.println("You drop the:  " + items.get(i));
-                System.out.println("");
-                }
-            else
-            System.out.println("");
-            System.out.println("You don't have that item.");
-            System.out.println("");
-            }
-        }
-    }
 
 
 
