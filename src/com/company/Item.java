@@ -45,6 +45,7 @@ public Item(String itemName, String itemDescription) {
 
     }
 
+    //not sure what this does:
     public void remove(Item temp) {
     }
 }

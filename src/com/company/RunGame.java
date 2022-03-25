@@ -92,8 +92,8 @@ private Player player = new Player();
                     } else {
 
                         System.out.println("Which item will you take: ");
-                        String choice = userInput.nextLine();
-                        player.takeItem(choice);
+                        String userChoice = userInput.nextLine();
+                        player.takeItem(userChoice);
                         takePlayerItems();
                         System.out.print("[Type here]: ");
                     }
@@ -124,9 +124,9 @@ private Player player = new Player();
                     } else {
 
                         System.out.println("What would you like to drop?");
-                        String choice = userInput.nextLine();
-                        player.dropItem(choice);
+                        String userChoice = userInput.nextLine();
                         dropPlayerItems();
+                        player.dropItem(userChoice);
                         System.out.print("[Type here]: ");
                     }
                 }
@@ -185,10 +185,10 @@ private Player player = new Player();
         player.getPlayerItems().remove(items);
     }
 
-    public Item takePlayerItems(Item choice) {
+    public void takePlayerItems() {
         ArrayList<Item> items = map.getCurrentRoom().getRoomItems();
         for (int i = 0; i < items.size(); i++) {
-            Item temp = map.getCurrentRoom().getRoomItems(items.get(i));
+            Item temp = map.getCurrentRoom().getRoomItems(Item items.get(i));
             if (temp.getItemName().equals(items)) {
                 items.add(temp);
             System.out.println("");
@@ -200,7 +200,7 @@ private Player player = new Player();
             System.out.println("That item is not in the room.");
             System.out.println("");
         }
-        return choice;
+        //return userChoice;
     }
 
     public void dropPlayerItems() {
