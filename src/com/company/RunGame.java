@@ -10,9 +10,6 @@ public class RunGame {
 
     private Map map = new Map();
 
-    {
-    }
-
     private Player player = new Player();
 
     public void playGame() {
@@ -42,23 +39,18 @@ public class RunGame {
 
 
                     if (map.currentRoom.hasAnyItem() == false) {
-
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
-                        System.out.print("[Type here]: ");
-
-
+                        System.out.print("[Type next move here]: ");
                     } else {
-
-
                         System.out.println("");
                         System.out.println("------------------------------------");
-                        System.out.println(player.getCurrentRoom().getRoomItems().get(0)); //NEEDS FIXING
+                        System.out.println(player.getCurrentRoom().getRoomItems().get(0).getItemDescription()); //NEEDS EXPLANATION =)
                         System.out.println("------------------------------------");
                         System.out.println("");
-                        System.out.println("To take the item?");
-                        System.out.print("[Type take] or [go 'direction']: ");
+                        System.out.println("To take the item:");
+                        System.out.print("[Type take] or [Type next move here]: ");
 
                     }
 
