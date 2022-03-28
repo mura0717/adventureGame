@@ -116,66 +116,14 @@ public class Map {
         currentRoom = room1;
 
         // Items & Their Locations:
-
-        room3.addItem(new Item("key", "A shiny metal key."));
-        room7.addItem(new Item("keycard", "An electronic key card."));
-        room2.addItem(new Item("knife","Could use it, to defend for myself?"));
-        room4.addItem(new Item("flashlight", "It still functional, and bright!"));
         room1.addItem(new Food("sandwich", "Gives +50 in health, Yum!", 50));
-        room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
+        room2.addItem(new Item("knife","Could use it, to defend for myself?"));
+        room3.addItem(new Item("key", "A metal key."));
+        room4.addItem(new Item("flashlight", "It is still functional and bright!"));
+        room6.addItem(new Item("grenade", "Could use it to blow big time."));
+        room7.addItem(new Item("keycard", "An electronic key card."));
+        room9.addItem(new Item("metal valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
 
-
-/*
-        Item room1_Key = new Item(""" 
-                  A tiny and shiny metal key. """, """
-             
-                  --> ITEM: (key) <-- """);
-
-        Item room7_Keycard = new Item("""
-                 An electronic key card. """, """
-                
-                 --> ITEM: (keycard) <-- """);
-
-        Item room2_Knife = new Item("""
-                 Could use it, to defend for myself? """, """
-                
-                 --> ITEM: (knife) <-- """);
-
-        Item room4_Flashlight = new Item("""
-                 It still functional, and bright! """, """
-                
-                 --> ITEM: (flashlight) <-- """);
-
-        Item room6_Sandwich = new Item("""
-                 Gives +50 in HP, Yum! """, """
-                                
-                 --> ITEM: (sandwich) <--""");
-
-        Item room9_MetalValve = new Item("""
-                A weird shaped, metal valve. """, """
-                
-                --> ITEM: (metal valve) <-- """);
-*/
     }
-/*
-    public void setCurrentRoom(Room currentRoom) {
-        Map.currentRoom = currentRoom;
-    }
-
-    public void setRequestedRoom(Room requestedRoom) {
-        Map.requestedRoom = requestedRoom;
-    }
-    */
 
 }
-
-//Item room_Empty = new Item("(Nothing of interest) "," Look in the other rooms. ");
-
-//Item room_Dark = new Item("(Well... It's too dark to see.) "," The room needs to be more bright, to see anything. ");
-
-// Item room8_Guard = new Item("The security guard, looks mean, and act violent -","You can't fight back without a weapon.");
-
-
-//room5.addItem(room_Empty);
-//room8.addItem(room8_Guard);
-//room3.addItem(room_Dark);
