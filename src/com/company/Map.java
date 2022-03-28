@@ -116,13 +116,13 @@ public class Map {
         currentRoom = room1;
 
         // Items & Their Locations:
-        room1.addItem(new Food("sandwich", "Gives +50 in health, Yum!", 50));
-        room2.addItem(new Item("knife","Could use it, to defend for myself?"));
-        room3.addItem(new Item("key", "A metal key."));
-        room4.addItem(new Item("flashlight", "It is still functional and bright!"));
-        room6.addItem(new Item("grenade", "Could use it to blow big time."));
-        room7.addItem(new Item("keycard", "An electronic key card."));
-        room9.addItem(new Item("metal valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
+        room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +50 in health, Yum!", 50));
+        room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself?", 25));
+        room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly."));
+        room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark."));
+        room6.addItem(new RangedWeapon("grenade", "A grenade. Could use it to blow big time.", 75));
+        room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly."));
+        room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
 
     }
 

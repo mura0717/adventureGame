@@ -17,6 +17,8 @@ public class Commands {
                 - inventory: ( inv )    Shows current list of items.
                 - health:               Shows current health.
                 - eat:                  Make you eat food if you have any.
+                - equip:                Equips any weapon you have.
+                - attack:               Attacks an enemy with an equipped weapon.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 

@@ -9,19 +9,39 @@ public class Player {
 
     private Room currentRoom;
     private int playerHealthStatus = 100;
+    private int enemyHealthStatus = 100;
+    private Weapon equippedWeapon;
     private ArrayList<Item> playerItems = new ArrayList<>();
 
+    // Current Room Getter & Setter
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+    public void setRoom(Room startRoom) {
+        currentRoom = startRoom;
+    }
+
+    // Array List Getter
     public ArrayList<Item> getPlayerItems() {
         return playerItems;
     }
 
-    // Healt Status Getter Setter
+    // Player Health Status Getter & Setter
     public int getHealthStatus() {
         return playerHealthStatus;
     }
-
     public void setHealthStatus(int healthStatus) {
         this.playerHealthStatus = healthStatus;
+    }
+
+    // Enemy Health Status Getter & Setter
+    public int getEnemyHealthStatus() {
+        return enemyHealthStatus;
+    }
+
+    // equippedWeapon Getter & Setter
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
     }
 
     // Checks if the direction given by the Player is possible.
@@ -121,6 +141,7 @@ public class Player {
             return true;
         }
     }
+
     public boolean dropItem(String itemName) {
         Item item = findPlayerItem(itemName);
         if (item == null) {
@@ -131,9 +152,10 @@ public class Player {
             return true;
         }
     }
-    public boolean playerHasAnyItem () {
-            return playerItems.size() > 0;
-        }
+
+    public boolean playerHasAnyItem() {
+        return playerItems.size() > 0;
+    }
 
     public boolean eatFood(String foodName) {
         Item food = findPlayerItem(foodName);
@@ -145,7 +167,7 @@ public class Player {
         return false;
     }
 
-    public boolean playerHasAnyFood () {
+    public boolean playerHasAnyFood() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i) instanceof Food) {
                 return true;
@@ -154,12 +176,41 @@ public class Player {
         return false;
     }
 
-    public void setRoom (Room startRoom){
-            currentRoom = startRoom;
+    public boolean equipWeapon(String weaponName) {
+        Item weapon = findPlayerItem(weaponName);
+        if (weapon instanceof Weapon) {
+            equippedWeapon = (Weapon) weapon;
+            return true;
         }
+        return false;
+    }
 
-    public Room getCurrentRoom () {
-            return currentRoom;
+    public boolean playerHasAnyWeapon() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i) instanceof Weapon) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isEquipped() {
+        if (equippedWeapon != null)
+            return true;
+        else
+            return false;
+    }
+
+    public void attackEnemy() {
+        if (isEquipped()) {
+            enemyHealthStatus -= ((Weapon) equippedWeapon).getHealthDamage();
         }
     }
+
+    //enemyHealthStatus -= ((Weapon) weapon).getHealthDamage()
+
+
+
+
+}
 

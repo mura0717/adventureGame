@@ -38,7 +38,7 @@ public class RunGame {
 
                 case "go west", "go w", "w", "west" -> player.goWest();
 
-                case "look" -> {
+                case "look", " look", "look " -> {
 
 
                     if (map.currentRoom.hasAnyItem() == false) {
@@ -54,7 +54,7 @@ public class RunGame {
 
                         System.out.println("");
                         System.out.println("------------------------------------");
-                        System.out.println(player.getCurrentRoom().getRoomItems().toString());
+                        System.out.println(player.getCurrentRoom().getRoomItems().get(0)); //NEEDS FIXING
                         System.out.println("------------------------------------");
                         System.out.println("");
                         System.out.println("To take the item?");
@@ -64,9 +64,9 @@ public class RunGame {
 
                 }
 
-                case "help" -> Commands.menuLoop();
+                case "help", " help", "help " -> Commands.menuLoop();
 
-                case "take" -> {
+                case "take", " take", "take " -> {
 
                     if (map.currentRoom.hasAnyItem() == false) {
 
@@ -90,7 +90,7 @@ public class RunGame {
                     }
                 }
 
-                case "drop" -> {
+                case "drop", " drop", "drop " -> {
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing to drop)");
@@ -111,24 +111,7 @@ public class RunGame {
                     }
                 }
 
-                case "inventory", "inv" -> {
-                    showInventory();
-                    System.out.print("[Type next move here]: ");
-                }
-
-                case "health" -> {
-                    player.getHealthStatus();
-                    int tempHealth = player.getHealthStatus();
-                    System.out.println(tempHealth);
-
-                    if (tempHealth <= 100 && tempHealth > 50) {
-                        System.out.println(tempHealth + " - You're in good health!");
-                    } else if (tempHealth < 50) {
-                        System.out.println(tempHealth +  " - You need food for better health so avoid combat.");
-                    }
-                }
-
-                case "eat" -> {
+                case "eat", " eat", "eat " -> {
 
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
@@ -146,7 +129,57 @@ public class RunGame {
                         }
                     }
                 }
-                case "exit" -> {
+
+                case "equip", " equip", "equip " -> {
+                    if (player.playerHasAnyWeapon() == false) {
+                        System.out.println("");
+                        System.out.println("(Nothing to equip.)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    } else {
+                        System.out.println("Which weapon would you like to use?");
+                        String userChoice = userInput.nextLine();
+                        boolean success = player.equipWeapon(userChoice);
+                        if (success) {
+                            System.out.println("You equipped: " + userChoice);
+                        } else {
+                            System.out.println("You can't because you don't have " + userChoice);
+                        }
+                        System.out.print("[Type next move here]: ");
+                    }
+                }
+
+                case "attack", " attack", "attack " -> {
+                    if (player.isEquipped() == false) {
+                        System.out.println("");
+                        System.out.println("(You can't attack before equipping a weapon.)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    } else {
+                        System.out.println("");
+                        System.out.println("You hit.");
+                        System.out.println("");
+                        System.out.println("Your enemy's health is now: " + player.getEnemyHealthStatus());
+                    }
+                }
+                case "health", " health", "health " -> {
+                    player.getHealthStatus();
+                    int tempHealth = player.getHealthStatus();
+                    System.out.println(tempHealth);
+
+                    if (tempHealth <= 100 && tempHealth > 50) {
+                        System.out.println(tempHealth + " - You're in good health!");
+                    } else if (tempHealth < 50) {
+                        System.out.println(tempHealth + " - You need food for better health so avoid combat.");
+                    }
+                }
+
+                case "inventory", "inv", " inventory", "inventory ", " inv", "inv " -> {
+                    showInventory();
+                    System.out.print("[Type next move here]: ");
+                }
+
+                case "exit", " exit", "exit " -> {
                     System.out.println("""
                                 
                             ---------------------
@@ -178,6 +211,7 @@ public class RunGame {
 
 
     }
+
     public void showInventory() {
         ArrayList<Item> items = player.getPlayerItems();
         for (int i = 0; i < items.size(); i++) {

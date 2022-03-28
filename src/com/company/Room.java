@@ -73,10 +73,10 @@ public class Room {
 
     //roomItems & ArrayList methods
 
-
+    // ArrayList roomItems Getter
     public ArrayList<Item> getRoomItems() {
         return roomItems;
-    } //roomItems Getter
+    }
 
     public void addItem (Item item) {
         roomItems.add(item);
