@@ -60,26 +60,7 @@ public class RunGame {
                         System.out.println("To take the item?");
                         System.out.print("[Type take] or [go 'direction']: ");
 
-
                     }
-
-
-                    // System.out.print("[Type next move]: ");
-                    // System.out.println("What would you like to take??");
-
-                    //  String choice = userInput.nextLine();
-
-                    //   makeAChoice(choice);
-
-                        /*
-                        if (currentRoom.getRoomItems() == null) {
-
-                            System.out.println("Nothing of interest");
-
-
-                        }
-*/
-
 
                 }
 
@@ -110,7 +91,6 @@ public class RunGame {
                 }
 
                 case "drop" -> {
-
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing to drop)");
@@ -118,7 +98,6 @@ public class RunGame {
                         System.out.print("[Type here]: ");
 
                     } else {
-
                         System.out.println("What would you like to drop?");
                         String userChoice = userInput.nextLine();
                         boolean success = player.dropItem(userChoice);
@@ -137,6 +116,36 @@ public class RunGame {
                     System.out.print("[Type next move here]: ");
                 }
 
+                case "health" -> {
+                    player.getHealthStatus();
+                    int tempHealth = player.getHealthStatus();
+                    System.out.println(tempHealth);
+
+                    if (tempHealth <= 100 && tempHealth > 50) {
+                        System.out.println(tempHealth + " - You're in good health!");
+                    } else if (tempHealth < 50) {
+                        System.out.println(tempHealth +  " - You need food for better health so avoid combat.");
+                    }
+                }
+
+                case "eat" -> {
+
+                    if (player.playerHasAnyItem() == false) {
+                        System.out.println("");
+                        System.out.println("(Nothing to eat)");
+                        System.out.println("");
+                        System.out.print("[Type here]: ");
+                    } else {
+                        System.out.println("What would you like to eat?");
+                        String userChoice = userInput.nextLine();
+                        boolean success = player.eatFood(userChoice);
+                        if (success) {
+                            System.out.println("You ate: " + userChoice);
+                        } else {
+                            System.out.println("You can't eat " + userChoice + ". Are you crazy?");
+                        }
+                    }
+                }
                 case "exit" -> {
                     System.out.println("""
                                 
@@ -164,6 +173,11 @@ public class RunGame {
             }
         }
     }
+
+    public void checkHealth() {
+
+
+    }
     public void showInventory() {
         ArrayList<Item> items = player.getPlayerItems();
         for (int i = 0; i < items.size(); i++) {
@@ -174,58 +188,3 @@ public class RunGame {
         player.getPlayerItems().remove(items);
     }
 }
-
-
-
-
-
-
-
-
-
-/*
-    public String makeAChoice(String choice) {
-
-        Scanner doubleInput = new Scanner(System.in);
-
-        System.out.println("What would you like to take?");
-        System.out.println("");
-        System.out.println("[Type here]:");
-
-        String choiceTake = doubleInput.nextLine();
-
-
-        if (choiceTake.equals("take" + player.getPlayerItems())) {
-
-            player.takeItem(currentRoom.getRoomItems(), doubleInput.nextLine());
-            System.out.println("You took the: " + player.getPlayerItems());
-
-        } else if (currentRoom.getRoomItems() == null) {
-
-
-                System.out.println("Nothing of interest");
-
-
-            } else {
-
-                System.out.println("You type wrong - Try again.");
-            System.out.println("");
-            System.out.println("What would you like to take?");
-                System.out.print("[Type here]: ");
-
-                makeAChoice(choice);
-
-            }
-            return choice;
-        }
-
-    }
-
-
-
-   player.dropItem(currentRoom.getRoomItems(), doubleInput.nextLine());
-            System.out.println("You dropped the: " + player.getPlayerItems());
- */
-
-
-

@@ -117,11 +117,11 @@ public class Map {
 
         // Items & Their Locations:
 
-        room1.addItem(new Item("key", "A shiny metal key."));
+        room3.addItem(new Item("key", "A shiny metal key."));
         room7.addItem(new Item("keycard", "An electronic key card."));
         room2.addItem(new Item("knife","Could use it, to defend for myself?"));
         room4.addItem(new Item("flashlight", "It still functional, and bright!"));
-        room6.addItem(new Item("sandwich", "Gives +50 in HP, Yum!"));
+        room1.addItem(new Food("sandwich", "Gives +50 in health, Yum!", 50));
         room9.addItem(new Item("metal valve", "A weird shaped, metal valve."));
 
 

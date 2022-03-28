@@ -15,6 +15,8 @@ public class Commands {
                 - take:                 Takes items, and adds to inventory.
                 - drop:                 Drops items, and removes them from the inventory.
                 - inventory: ( inv )    Shows current list of items.
+                - health:               Shows current health.
+                - eat:                  Make you eat food if you have any.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 

@@ -8,12 +8,21 @@ import java.util.ArrayList;
 public class Player {
 
     private Room currentRoom;
+    private int playerHealthStatus = 100;
     private ArrayList<Item> playerItems = new ArrayList<>();
 
     public ArrayList<Item> getPlayerItems() {
         return playerItems;
     }
-    /* ---------------------------------------------------------------------------- */
+
+    // Healt Status Getter Setter
+    public int getHealthStatus() {
+        return playerHealthStatus;
+    }
+
+    public void setHealthStatus(int healthStatus) {
+        this.playerHealthStatus = healthStatus;
+    }
 
     // Checks if the direction given by the Player is possible.
     public void wrongWay() {
@@ -122,11 +131,28 @@ public class Player {
             return true;
         }
     }
-
     public boolean playerHasAnyItem () {
-            boolean playerAnyItem = playerItems.size() > 0;
-            return playerAnyItem;
+            return playerItems.size() > 0;
         }
+
+    public boolean eatFood(String foodName) {
+        Item food = findPlayerItem(foodName);
+        if (food instanceof Food) {
+            playerHealthStatus += ((Food) food).getHealth();
+            playerItems.remove(foodName);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean playerHasAnyFood () {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i) instanceof Food) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void setRoom (Room startRoom){
             currentRoom = startRoom;
