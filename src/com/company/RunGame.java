@@ -12,7 +12,7 @@ public class RunGame {
 
     private Player player = new Player();
 
-    public void playGame() {
+    public void playGame() throws InterruptedException {
 
         map.buildMap();
         Room startRoom = map.getCurrentRoom();
@@ -27,6 +27,8 @@ public class RunGame {
 
             switch (commandString) {
 
+
+
                 case "go north", "go n", "n", "north" -> player.goNorth();
 
                 case "go south", "go s", "s", "south" -> player.goSouth();
@@ -34,6 +36,8 @@ public class RunGame {
                 case "go east", "go e", "e", "east" -> player.goEast();
 
                 case "go west", "go w", "w", "west" -> player.goWest();
+
+
 
                 case "look", " look", "look " -> {
 
@@ -44,9 +48,11 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        System.out.println("");
+                        System.out.println("");                             // get(0).getItemDescription() // Gav fejl med fjenden.
                         System.out.println("------------------------------------");
-                        System.out.println(player.getCurrentRoom().getRoomItems().get(0).getItemDescription()); //NEEDS EXPLANATION =)
+                        System.out.println(player.getCurrentRoom().getRoomItems().toString()); //NEEDS EXPLANATION =)
+                        System.out.println("");
+                        System.out.println(startRoom.getEnemies().get(0).toString());
                         System.out.println("------------------------------------");
                         System.out.println("");
                         System.out.println("To take the item:");
@@ -83,6 +89,7 @@ public class RunGame {
                 }
 
                 case "drop", " drop", "drop " -> {
+
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing to drop)");
@@ -116,13 +123,20 @@ public class RunGame {
                         boolean success = player.eatFood(userChoice);
                         if (success) {
                             System.out.println("You ate: " + userChoice);
+                            System.out.println("");
+                            System.out.println("Player receive +50 " + player.getHealthStatus());
+                            System.out.println("");
+                            System.out.print("[Type next move here]: ");
                         } else {
                             System.out.println("You can't eat " + userChoice + ". Are you crazy?");
+                            System.out.println("");
+                            System.out.print("[Type next move here]: ");
                         }
                     }
                 }
 
                 case "equip", " equip", "equip " -> {
+
                     if (player.playerHasAnyWeapon() == false) {
                         System.out.println("");
                         System.out.println("(Nothing to equip.)");
@@ -142,16 +156,40 @@ public class RunGame {
                 }
 
                 case "attack", " attack", "attack " -> {
+
                     if (player.isEquipped() == false) {
                         System.out.println("");
-                        System.out.println("(You can't attack before equipping a weapon.)");
+                        System.out.println("(You can't attack, before equipping a weapon.)");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
+
+                    } else if (player.isEquipped() == false && player.enemyIsCurrent() == true) {
+
+                        player.enemyChanceAttack();
+
+                        System.out.println("------------------------------------------------------");
+                        System.out.println("");
+                        System.out.println("(You can't attack the enemy, before equipping a weapon.)");
+                        System.out.println("");
+                        System.out.println("(The enemy hit you, for that mistake)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+
                     } else {
-                        System.out.println("");
-                        System.out.println("You hit.");
-                        System.out.println("");
-                        System.out.println("Your enemy's health is now: " + player.getEnemyHealthStatus());
+
+                        player.playerAttack();
+                        Thread.sleep(1500);
+                        player.enemyAttack();
+                        Thread.sleep(1500);
+
+                        System.out.println(" ");
+                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("The enemy's health is now: " + player.getEnemyHealthStatus());
+                        System.out.println(" ");
+                        System.out.println("The player's health is now: " + player.getHealthStatus());
+                        System.out.println("-----------------------------------------------------------");
+                        Thread.sleep(1500);
+                        System.out.print("[Type next move here]: ");
                     }
                 }
                 case "health", " health", "health " -> {
@@ -162,12 +200,19 @@ public class RunGame {
                     if (tempHealth <= 100 && tempHealth > 50) {
                         System.out.println(tempHealth + " - You're in good health!");
                     } else if (tempHealth < 50) {
-                        System.out.println(tempHealth + " - You need food for better health so avoid combat.");
+                        System.out.println(tempHealth + " - You need food, for better health, so avoid combat.");
                     }
                 }
 
                 case "inventory", "inv", " inventory", "inventory ", " inv", "inv " -> {
+                    System.out.println("");
+                    System.out.println("-------------------");
+                    System.out.println("Player inventory is: ");
+                    System.out.println("-------------------");
+                    System.out.println("");
                     showInventory();
+                    System.out.println("");
+                    System.out.println("-------------------");
                     System.out.print("[Type next move here]: ");
                 }
 
@@ -214,3 +259,6 @@ public class RunGame {
         player.getPlayerItems().remove(items);
     }
 }
+
+
+

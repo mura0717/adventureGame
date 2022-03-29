@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 // import static com.company.Map.currentRoom;
 // import static com.company.Map.requestedRoom;
@@ -17,6 +18,7 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+
     public void setRoom(Room startRoom) {
         currentRoom = startRoom;
     }
@@ -30,6 +32,8 @@ public class Player {
     public int getHealthStatus() {
         return playerHealthStatus;
     }
+
+
     public void setHealthStatus(int healthStatus) {
         this.playerHealthStatus = healthStatus;
     }
@@ -55,6 +59,51 @@ public class Player {
                 [Type again here]:
                 """);
     }
+
+    public void wrongWayGuard() {
+        System.out.print("""
+                        
+                ---------------------------------------------
+                The Guard is blocking your way. - Remove him away first. 
+                ---------------------------------------------
+                        
+                [Type again here]:
+                """);
+    }
+
+    // * --- Forsøg på at skave lukkede døre op til fjenden.
+
+    public void lockedWay() {
+        System.out.print("""
+                        
+                ---------------------------------------------
+                That door is locked - Needs a key!
+                ---------------------------------------------
+                        
+                [Type again here]:
+                """);
+    }
+
+    public void goEastLocked() {
+        Room requestedRoom = currentRoom.getEast();
+        if (requestedRoom != currentRoom) {
+            lockedWay();
+        } else {
+            currentRoom = requestedRoom;
+            rightWay();
+        }
+    }
+
+    public void goWestLocked() {
+        Room requestedRoom = currentRoom.getWest();
+        if (requestedRoom != currentRoom) {
+            lockedWay();
+        } else {
+            currentRoom = requestedRoom;
+            rightWay();
+        }
+    }
+
 
     public void rightWay() {
         System.out.println("");
@@ -207,10 +256,148 @@ public class Player {
         }
     }
 
+    public boolean enemyIsCurrent() {
+        if (currentRoom.getEnemies() != null)
+            return true;
+        else
+            return false;
+    }
+
     //enemyHealthStatus -= ((Weapon) weapon).getHealthDamage()
 
+
+    public void enemyChanceAttack() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player was hit - lose -25 healthpoints.");
+            System.out.println("-----------------------------------------------------------");
+
+            playerHealthStatus -= 25;
+
+
+        } else if (A == 4 || A == 5 || A == 6) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player were lucky, you didn't get hit. ");
+            System.out.println("-----------------------------------------------------------");
+
+        }
+
+
+    }
+
+
+    public void enemyAttack() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3) {
+
+            playerHealthStatus -= 25;
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player was hit - lose -25 healthpoints.");
+            System.out.println("-----------------------------------------------------------");
+
+            playerDies();
+
+
+        } else if (A == 4 || A == 5 || A == 6) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player were lucky, you didn't get hit. ");
+            System.out.println("-----------------------------------------------------------");
+
+
+        }
+    }
+
+    public void playerAttack() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3) {
+
+            enemyHealthStatus -= 25;
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy was hit - lose -25 healthpoints.");
+            System.out.println("-----------------------------------------------------------");
+
+            enemyDies();
+
+
+        } else if (A == 4 || A == 5 || A == 6) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy didn't get hit. ");
+            System.out.println("-----------------------------------------------------------");
+
+
+
+        }
+
+
+    }
+
+
+
+    public void playerDies() {
+
+        if (playerHealthStatus <= 0) {
+
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy die!, Baby!!");
+            System.out.println("");
+            System.out.println("You won the adventure.");
+            System.out.println("-----------------------------------------------------------");
+
+            System.exit(0);
+
+
+        }
+
+
+    }
+
+    public void enemyDies() {
+
+        if (enemyHealthStatus <= 0) {
+
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy die!, Baby!!");
+            System.out.println("");
+            System.out.println("You won the adventure.");
+            System.out.println("-----------------------------------------------------------");
+
+            System.exit(0);
+
+
+        }
+
+
+    }
 
 
 
 }
-

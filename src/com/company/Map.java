@@ -8,8 +8,8 @@ public class Map {
     public Room currentRoom;
 
     public Room getCurrentRoom() {
-       return currentRoom;
-   }
+        return currentRoom;
+    }
     //private String itemsList;
 
     //Items Array List
@@ -19,7 +19,7 @@ public class Map {
 
 
     public void buildMap() {
-    // Room Descriptions:
+        // Room Descriptions:
         Room room1 = new Room("Ground Zero", """
             
             
@@ -123,6 +123,10 @@ public class Map {
         room6.addItem(new RangedWeapon("grenade", "A grenade. Could use it to blow big time.", 75));
         room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly."));
         room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
+
+
+        // Enemy & Their Locations:
+        room1.addEnemy(new Enemy("guard","Looks aggressive, be careful",100));
 
     }
 

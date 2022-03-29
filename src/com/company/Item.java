@@ -9,21 +9,21 @@ public class Item {
     private String itemDescription;
     private ArrayList <Item> items = new ArrayList();
 
-//Item Constructer
-public Item(String itemName, String itemDescription) {
-     this.itemName = itemName;
-     this.itemDescription = itemDescription;
-     this.items = items;
- }
+    //Item Constructer
+    public Item(String itemName, String itemDescription) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.items = items;
+    }
 
-//Item Setters
+    //Item Setters
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
-//Item Getters
+    //Item Getters
     public String getItemDescription() {
         return itemDescription;
     }
@@ -31,14 +31,14 @@ public Item(String itemName, String itemDescription) {
         return itemName;
     }
 
-// Item toString
+    // Item toString
     public String toString() {
         return itemName + " - " + itemDescription;
-                
+
 
     }
 
-//not sure what this does:
+    //not sure what this does:
     public void remove(Item temp) {
     }
 }

@@ -13,6 +13,7 @@ public class Room {
     private Room north;
     private Room south;
     private ArrayList<Item> roomItems;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
 
     // Room Constructor
@@ -86,7 +87,7 @@ public class Room {
         for (int i = 0; i < roomItems.size(); i++) {
             Item temp = roomItems.get(i);
             if (temp.getItemName().equals(item)) {
-                 item.remove(temp);
+                item.remove(temp);
             }
         }
         return null;
@@ -96,7 +97,30 @@ public class Room {
         return anyItem;
     }
 
+    // * ------------------------------------------------------
+
+    // Enemy tilføjet:
+
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+
+    }
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+// * ------------------------------------------------------
+
+
 }
+
+
+
 
 
 
