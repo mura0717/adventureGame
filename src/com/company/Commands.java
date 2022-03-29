@@ -14,7 +14,7 @@ public class Commands {
                 - look:                 Look around for item.
                 - take:                 Takes items, and adds to inventory.
                 - drop:                 Drops items, and removes them from the inventory.
-                - inventory: ( inv )    Shows current list of items.
+                - inventory (inv):      Shows current list of items.
                 - health:               Shows current health.
                 - eat:                  Make you eat food if you have any.
                 - equip:                Equips any weapon you have.
