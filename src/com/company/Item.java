@@ -39,6 +39,6 @@ public class Item {
     }
 
     //not sure what this does:
-    public void remove(Item temp) {
-    }
+  //  public void remove(Item temp) {
+   // }
 }

@@ -174,6 +174,10 @@ public class Player {
         return null;
     }
 
+    public boolean playerHasAnyItem() {
+        return playerItems.size() > 0;
+    }
+
     public boolean takeItem(String itemName) {
         Item item = findRoomItem(itemName);
         if (item == null) { //if there is no item in the room.
@@ -195,10 +199,6 @@ public class Player {
             playerItems.remove(item);
             return true;
         }
-    }
-
-    public boolean playerHasAnyItem() {
-        return playerItems.size() > 0;
     }
 
     public boolean eatFood(String foodName) {
@@ -250,15 +250,18 @@ public class Player {
             enemyHealthStatus -= ((Weapon) equippedWeapon).getHealthDamage();
         }
     }
-
+/*
     public boolean enemyIsCurrent() {
         if (currentRoom.getEnemies() != null)
             return true;
         else
             return false;
     }
+     enemyHealthStatus -= ((Weapon) weapon).getHealthDamage()
 
-    //enemyHealthStatus -= ((Weapon) weapon).getHealthDamage()
+ */
+
+
 
 
     public void enemyChanceAttack() {
@@ -288,7 +291,6 @@ public class Player {
 
 
     }
-
 
     public void enemyAttack() {
 
@@ -345,13 +347,10 @@ public class Player {
             System.out.println("-----------------------------------------------------------");
 
 
-
         }
 
 
     }
-
-
 
     public void playerDies() {
 
@@ -394,5 +393,7 @@ public class Player {
     }
 
 
-
+    public boolean enemyIsCurrent() {
+        return false;
+    }
 }

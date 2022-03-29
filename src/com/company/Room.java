@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Room {
 
@@ -13,7 +14,7 @@ public class Room {
     private Room north;
     private Room south;
     private ArrayList<Item> roomItems;
-    private ArrayList<Enemy> enemies;
+    //private ArrayList<Item> roomItems = new ArrayList<>();
 
 
     // Room Constructor
@@ -70,15 +71,16 @@ public class Room {
         return name + description;
     }
 
-    /*-------------------------------------------------------------------------------*/
-
-    //roomItems & ArrayList methods
-
-    // ArrayList roomItems Getter
+    // ArrayList roomItems Getter & Setter
     public ArrayList<Item> getRoomItems() {
         return roomItems;
     }
 
+    public void setRoomItems(ArrayList<Item> roomItems) {
+        this.roomItems = roomItems;
+    }
+
+    //roomItems & ArrayList methods
     public void addItem (Item item) {
         roomItems.add(item);
     }
@@ -86,24 +88,28 @@ public class Room {
     public Room removeItem (Item item) {
         for (int i = 0; i < roomItems.size(); i++) {
             Item temp = roomItems.get(i);
-            if (temp.getItemName().equals(item)) {
-                 item.remove(temp);
+            if (temp.getItemName().equals(item.getItemName())) {
+                roomItems.remove(temp);
             }
         }
         return null;
     }
-    public boolean hasAnyItem() {
+
+    //public void deleteItem(Item item) {
+      //  this.roomItems.remove(item);
+    //}
+
+
+    public boolean roomHasAnyItem() {
         boolean anyItem = roomItems.size() > 0;
         return anyItem;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
+    /* public Map<Object, Object> getEnemies() {
+        return null;
     }
 
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
-    }
+     */
 }
 
 

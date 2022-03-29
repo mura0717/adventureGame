@@ -42,7 +42,7 @@ public class RunGame {
                 case "look", " look", "look " -> {
 
 
-                    if (map.currentRoom.hasAnyItem() == false) {
+                    if (map.currentRoom.roomHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
@@ -52,11 +52,11 @@ public class RunGame {
                         System.out.println("------------------------------------");
                         System.out.println(player.getCurrentRoom().getRoomItems().toString()); //NEEDS EXPLANATION =)
                         System.out.println("");
-                        System.out.println(startRoom.getEnemies().get(0).toString());
+                       // System.out.println(startRoom.getEnemies().get(0).toString());
                         System.out.println("------------------------------------");
                         System.out.println("");
                         System.out.println("To take the item:");
-                        System.out.print("[Type take] or [Type next move here]: ");
+                        System.out.print("[Type take] or [Type next move]: ");
 
                     }
 
@@ -66,7 +66,7 @@ public class RunGame {
 
                 case "take", " take", "take " -> {
 
-                    if (map.currentRoom.hasAnyItem() == false) {
+                    if (map.currentRoom.roomHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
@@ -242,8 +242,6 @@ public class RunGame {
     }
 
     public void checkHealth() {
-
-
     }
 
     public void showInventory() {
