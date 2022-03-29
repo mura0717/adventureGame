@@ -360,9 +360,9 @@ public class Player {
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("Enemy die!, Baby!!");
+            System.out.println("Player die!, Baby!!");
             System.out.println("");
-            System.out.println("You won the adventure.");
+            System.out.println("You lost the adventure.");
             System.out.println("-----------------------------------------------------------");
 
             System.exit(0);
