@@ -3,9 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
-// import static com.company.Map.currentRoom;
-// import static com.company.Map.requestedRoom;
-
 public class Player {
 
     private Room currentRoom;
@@ -38,12 +35,12 @@ public class Player {
         this.playerHealthStatus = healthStatus;
     }
 
-    // Enemy Health Status Getter & Setter
+    // Enemy Health Status Getter
     public int getEnemyHealthStatus() {
         return enemyHealthStatus;
     }
 
-    // equippedWeapon Getter & Setter
+    // equippedWeapon Getter
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
@@ -114,7 +111,6 @@ public class Player {
         System.out.print("[Type next move]: ");
     }
 
-
     // Player Movement
     public void goSouth() {
         Room requestedRoom = currentRoom.getSouth();
@@ -180,13 +176,12 @@ public class Player {
 
     public boolean takeItem(String itemName) {
         Item item = findRoomItem(itemName);
-        // item kan være null - hvis der ikke er noget 'foundItem' i rummmet
-        if (item == null) {
+        if (item == null) { //if there is no item in the room.
             return false;
-            //  System.out.println("No item with name " +itemName +" in this room");
         } else {
             playerItems.add(item);
             currentRoom.removeItem(item);
+            //currentRoom.deleteItem(item);
             return true;
         }
     }
