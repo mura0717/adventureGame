@@ -13,6 +13,7 @@ public class Room {
     private Room north;
     private Room south;
     private ArrayList<Item> roomItems;
+    //private ArrayList<Item> roomItems = new ArrayList<>();
 
 
     // Room Constructor
@@ -69,15 +70,16 @@ public class Room {
         return name + description;
     }
 
-    /*-------------------------------------------------------------------------------*/
-
-    //roomItems & ArrayList methods
-
-    // ArrayList roomItems Getter
+    // ArrayList roomItems Getter & Setter
     public ArrayList<Item> getRoomItems() {
         return roomItems;
     }
 
+    public void setRoomItems(ArrayList<Item> roomItems) {
+        this.roomItems = roomItems;
+    }
+
+    //roomItems & ArrayList methods
     public void addItem (Item item) {
         roomItems.add(item);
     }
@@ -86,11 +88,20 @@ public class Room {
         for (int i = 0; i < roomItems.size(); i++) {
             Item temp = roomItems.get(i);
             if (temp.getItemName().equals(item)) {
-                 item.remove(temp);
+                roomItems.remove(temp);
+                //roomItems.remove(item);
+                //this.roomItems.remove(temp);
+                //this.roomItems.remove(item);
             }
         }
         return null;
     }
+
+    //public void deleteItem(Item item) {
+      //  this.roomItems.remove(item);
+    //}
+
+
     public boolean hasAnyItem() {
         boolean anyItem = roomItems.size() > 0;
         return anyItem;

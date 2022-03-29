@@ -6,17 +6,9 @@ import java.util.List;
 public class Map {
 
     public Room currentRoom;
-
     public Room getCurrentRoom() {
        return currentRoom;
    }
-    //private String itemsList;
-
-    //Items Array List
-    //ArrayList <Item> items = new ArrayList <> (List.of(itemsList));
-
-
-
 
     public void buildMap() {
     // Room Descriptions:

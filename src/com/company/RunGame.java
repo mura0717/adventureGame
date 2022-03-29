@@ -61,24 +61,20 @@ public class RunGame {
                 case "take", " take", "take " -> {
 
                     if (map.currentRoom.hasAnyItem() == false) {
-
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
                         System.out.print("[Type here]: ");
-
                     } else {
-
                         System.out.println("Which item will you take: ");
                         String userChoice = userInput.nextLine();
                         boolean success = player.takeItem(userChoice);
                         if (success) {
-                            System.out.println("Took item " + userChoice);
+                            System.out.println("Took item: " + userChoice);
                         } else {
-                            System.out.println("No item named " + userChoice + " in this room");
+                            System.out.println("No item named " + userChoice + " in this room.");
                         }
-
-                        System.out.print("[Type here]: ");
+                        System.out.print("[Type next move here]: ");
                     }
                 }
 
@@ -154,6 +150,7 @@ public class RunGame {
                         System.out.println("Your enemy's health is now: " + player.getEnemyHealthStatus());
                     }
                 }
+
                 case "health", " health", "health " -> {
                     player.getHealthStatus();
                     int tempHealth = player.getHealthStatus();
@@ -208,7 +205,7 @@ public class RunGame {
         ArrayList<Item> items = player.getPlayerItems();
         for (int i = 0; i < items.size(); i++) {
             System.out.println("");
-            System.out.println(items.get(i));
+            System.out.println(items.get(i).getItemDescription());
             System.out.println("");
         }
         player.getPlayerItems().remove(items);
