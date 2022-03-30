@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -11,6 +12,11 @@ public class RunGame {
     private Map map = new Map();
 
     private Player player = new Player();
+
+
+
+
+
 
     public void playGame() throws InterruptedException {
 
@@ -58,15 +64,15 @@ public class RunGame {
                         System.out.println("------------------------------------");
 
                         ArrayList<Item> items = player.getCurrentRoom().getRoomItems();
-                        ArrayList<Enemy> enemies = player.getCurrentRoom().getEnemies();
+                        ArrayList<Enemy> enemies = (ArrayList<Enemy>) player.getCurrentRoom().getEnemies();
 
                         for(Item item : items) {
-                            System.out.println(item.getItemDescription()); //NEEDS EXPLANATION =)
+                            System.out.println(item.toString()); // getItemDescription()
                         }
                         System.out.println("");
 
                         for(Enemy enemy : enemies){
-                            System.out.println(enemy.getEnemyDescription());
+                            System.out.println(enemy.toString()); // getEnemyDescription()
                         }
 
                         System.out.println("------------------------------------");
@@ -149,13 +155,12 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        System.out.println("Which weapon would you like to use?");
-                        String userChoice = userInput.nextLine();
-                        boolean success = player.equipWeapon(userChoice);
+
+                        boolean success = player.equipWeapon(secondWord);
                         if (success) {
-                            System.out.println("You equipped: " + userChoice);
+                            System.out.println("You equipped: " + secondWord);
                         } else {
-                            System.out.println("You can't because you don't have " + userChoice);
+                            System.out.println("You can't because you don't have " + secondWord);
                         }
                         System.out.print("[Type next move here]: ");
                     }
@@ -169,7 +174,7 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
 
-                    } else if (player.isEquipped() == false && player.enemyIsCurrent() == true) {
+                    } else if (player.isEquipped() == false) {
 
                         player.enemyChanceAttack();
 
@@ -183,17 +188,17 @@ public class RunGame {
 
                     } else {
 
-                     //    player.playerAttack();   // <- Husk: Skal have et enemy-objekt!
-                         Thread.sleep(1500);
+                        player.playerAttack();   // <- Husk: Skal have et enemy-objekt!
+                        Thread.sleep(1500);
                         player.enemyAttack();
                         Thread.sleep(1500);
 
                         System.out.println(" ");
-                        System.out.println("-----------------------------------------------------------");
-                        System.out.println("The enemy's health is now: " + player.getEnemyHealthStatus());
+                       /* System.out.println("-----------------------------------------------------------");
+                        System.out.println("The enemy's health is now: " + startRoom.getEnemies().get(0).getEnemyHealth());
                         System.out.println(" ");
                         System.out.println("The player's health is now: " + player.getHealthStatus());
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("-----------------------------------------------------------"); */
                         Thread.sleep(1500);
                         System.out.print("[Type next move here]: ");
                     }
@@ -251,8 +256,6 @@ public class RunGame {
         }
     }
 
-    public void checkHealth() {
-    }
 
     public void showInventory() {
         ArrayList<Item> items = player.getPlayerItems();

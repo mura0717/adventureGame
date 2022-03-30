@@ -13,6 +13,8 @@ public class Room {
     private Room west;
     private Room north;
     private Room south;
+
+
     private ArrayList<Item> roomItems;
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
@@ -102,26 +104,19 @@ public class Room {
         return anyItem;
     }
 
-    public boolean roomHasAnyEnemy() {
-        boolean anyEnemy = enemies.size() > 0;
-        return anyEnemy;
-    }
-
-
-    public void setEnemies(ArrayList<Enemy> enemies) {
-        this.enemies = enemies;
-    }
-
-
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
-    }
 
     public void addEnemy (Enemy enemy) {
         enemies.add(enemy);
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
 
+    public boolean roomHasAnyEnemy() {
+        boolean anyEnemy = enemies.size() > 0;
+        return anyEnemy;
+    }
 }
 
 

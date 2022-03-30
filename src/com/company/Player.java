@@ -6,10 +6,13 @@ import java.util.Random;
 public class Player {
 
     private Room currentRoom;
-    private int playerHealthStatus = 100;
-    private int enemyHealthStatus = 100;
+    private int playerHealthStatus = 200;
+   // private int enemyHealthStatus = 100;
     private Weapon equippedWeapon;
+
     private ArrayList<Item> playerItems = new ArrayList<>();
+
+
 
     // Current Room Getter & Setter
     public Room getCurrentRoom() {
@@ -34,12 +37,12 @@ public class Player {
     public void setHealthStatus(int healthStatus) {
         this.playerHealthStatus = healthStatus;
     }
-
+/*
     // Enemy Health Status Getter
     public int getEnemyHealthStatus() {
         return enemyHealthStatus;
     }
-
+*/
     // equippedWeapon Getter
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
@@ -175,15 +178,7 @@ public class Player {
     }
 
 
-    public Enemy findRoomEnemy(String enemyName) {
-        ArrayList<Enemy> enemies = currentRoom.getEnemies();
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).getEnemyName().equals(enemyName)) {
-                return enemies.get(i);
-            }
-        }
-        return null;
-    }
+
 
     public boolean playerHasAnyItem() {
         return playerItems.size() > 0;
@@ -255,12 +250,14 @@ public class Player {
         else
             return false;
     }
-
+/*
     public void attackEnemy() {
         if (isEquipped()) {
             enemyHealthStatus -= ((Weapon) equippedWeapon).getHealthDamage();
         }
     }
+    */
+
 /*
     public boolean enemyIsCurrent() {
         if (currentRoom.getEnemies() != null)
@@ -309,19 +306,19 @@ public class Player {
 
         int A = randomNumberAttack.nextInt(1, 7);
 
-        if (A == 1 || A == 2 || A == 3) {
+        if (A == 1 || A == 2 || A == 3 || A == 4 || A == 5 || A == 6) {
 
-            playerHealthStatus -= 25;
+            playerHealthStatus -= 50;
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("Player was hit - lose -25 healthpoints.");
+            System.out.println("Player was hit - " + getHealthStatus() + " health");
             System.out.println("-----------------------------------------------------------");
 
             playerDies();
 
 
-        } else if (A == 4 || A == 5 || A == 6) {
+        } /* else if (A == 4 || A == 5 || A == 6) {
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
@@ -329,29 +326,39 @@ public class Player {
             System.out.println("-----------------------------------------------------------");
 
 
-        }
+        } */
     }
 
-    public void playerAttack(Enemy enemy) {
+    public void playerAttack() { // husk at sætte parametre her.
 
         Random randomNumberAttack = new Random();
 
         int A = randomNumberAttack.nextInt(1, 7);
 
-        if (A == 1 || A == 2 || A == 3) {
+        if (A == 1 || A == 2 || A == 3 || A == 4 || A == 5 || A == 6) {
 
-            enemy.updateHealthStatus(-25);
-         //   enemyHealthStatus -= 25;
+          Enemy enemy = currentRoom.getEnemies().get(0);
+
+          enemy.enemyHealthUpdated(equippedWeapon.getHealthDamage());
+
+            // enemies.get(0).enemyHealthUpdated();
+
+          //  System.out.println(enemies);
+
+            // enemyHealthStatus -= 25;
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("Enemy was hit - lose -25 healthpoints.");
+            System.out.println("Enemy was hit - " + enemy.getEnemyHealth() + " health");
             System.out.println("-----------------------------------------------------------");
 
             enemyDies();
 
+            winningTheGame();
 
-        } else if (A == 4 || A == 5 || A == 6) {
+
+        } /*else if (A == 4 || A == 5 || A == 6) {
+
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
@@ -359,7 +366,7 @@ public class Player {
             System.out.println("-----------------------------------------------------------");
 
 
-        }
+        } */
 
 
     }
@@ -367,8 +374,6 @@ public class Player {
     public void playerDies() {
 
         if (playerHealthStatus <= 0) {
-
-
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
             System.out.println("Player die!, Baby!!");
@@ -381,31 +386,53 @@ public class Player {
 
         }
 
-
     }
-
     public void enemyDies() {
 
-        if (enemyHealthStatus <= 0) {
+        Enemy enemy = currentRoom.getEnemies().get(0);
+
+        if (enemy.getEnemyHealth() <= 0) {
 
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
             System.out.println("Enemy die!, Baby!!");
             System.out.println("");
-            System.out.println("You won the adventure.");
+            System.out.println("The enemy dropped an item - take a look");
             System.out.println("-----------------------------------------------------------");
+
+            // System.exit(0);
+
+           // currentRoom.getEnemies().remove(enemy);
+
+            currentRoom.getEnemies().remove(0);
+            // Begge ting virker.
+
+            currentRoom.getRoomItems().add(new MeleeWeapon("baton", "the guards baton - +50 damage", 50));
+            // koden der får en hvilken somhelst fjende til at tabe stuff.
+
+
+        }
+    }
+
+    public void winningTheGame() { // Virker ikke.
+
+        if (currentRoom.getEnemies().remove(null)) {
+
+
+            System.out.println("");
+            System.out.println("-----------------------");
+            System.out.println("Player killed every man! - That lunatic!.");
+            System.out.println("");
+            System.out.println("The Adventure is done!!");
+            System.out.println("-----------------------");
+            System.out.println("");
 
             System.exit(0);
 
 
         }
 
-
     }
 
-
-    public boolean enemyIsCurrent() {
-        return false;
-    }
 }
