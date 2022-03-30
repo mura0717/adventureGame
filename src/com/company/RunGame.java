@@ -15,7 +15,7 @@ public class RunGame {
     public void playGame() throws InterruptedException {
 
         map.buildMap();
-        Room startRoom = map.getCurrentRoom();
+        Room startRoom = map.getStartRoom();
         player.setRoom(startRoom);
 
         boolean gameLoop = true;
@@ -23,11 +23,19 @@ public class RunGame {
         Scanner userInput = new Scanner(System.in);
 
         while (gameLoop) {
-            String commandString = userInput.nextLine().toLowerCase(Locale.ROOT);
+            String commandString = userInput.nextLine().toLowerCase(Locale.ROOT).trim();
+            String firstWord = "";
+            String secondWord = "";
 
-            switch (commandString) {
+            int firstSpace = commandString.indexOf(" ");
+            if(commandString.startsWith("go") || firstSpace == -1) { // no space or command starts with "go"
+                firstWord = commandString;
+            } else {
+                firstWord = commandString.substring(0, firstSpace);
+                secondWord = commandString.substring(firstSpace + 1);
+            }
 
-
+            switch (firstWord) {
 
                 case "go north", "go n", "n", "north" -> player.goNorth();
 
@@ -37,54 +45,58 @@ public class RunGame {
 
                 case "go west", "go w", "w", "west" -> player.goWest();
 
+                case "look" -> {
 
 
-                case "look", " look", "look " -> {
-
-
-                    if (map.currentRoom.roomHasAnyItem() == false) {
+                    if (player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        System.out.println("");                             // get(0).getItemDescription() // Gav fejl med fjenden.
-                        System.out.println("------------------------------------");
-                        System.out.println(player.getCurrentRoom().getRoomItems().toString()); //NEEDS EXPLANATION =)
                         System.out.println("");
-                       // System.out.println(startRoom.getEnemies().get(0).toString());
+                        System.out.println("------------------------------------");
+
+                        ArrayList<Item> items = player.getCurrentRoom().getRoomItems();
+                        ArrayList<Enemy> enemies = player.getCurrentRoom().getEnemies();
+
+                        for(Item item : items) {
+                            System.out.println(item.getItemDescription()); //NEEDS EXPLANATION =)
+                        }
+                        System.out.println("");
+
+                        for(Enemy enemy : enemies){
+                            System.out.println(enemy.getEnemyDescription());
+                        }
+
                         System.out.println("------------------------------------");
                         System.out.println("");
                         System.out.println("To take the item:");
                         System.out.print("[Type take] or [Type next move]: ");
-
                     }
-
                 }
 
-                case "help", " help", "help " -> Commands.menuLoop();
+                case "help" -> Commands.menuLoop();
 
-                case "take", " take", "take " -> {
+                case "take" -> {
 
-                    if (map.currentRoom.roomHasAnyItem() == false) {
+                    if (player.getCurrentRoom().roomHasAnyItem() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
                         System.out.print("[Type here]: ");
                     } else {
-                        System.out.println("Which item will you take: ");
-                        String userChoice = userInput.nextLine();
-                        boolean success = player.takeItem(userChoice);
+                        boolean success = player.takeItem(secondWord);
                         if (success) {
-                            System.out.println("Took item: " + userChoice);
+                            System.out.println("Took item: " + secondWord);
                         } else {
-                            System.out.println("No item named " + userChoice + " in this room.");
+                            System.out.println("No item named " + secondWord + " in this room.");
                         }
                         System.out.print("[Type next move here]: ");
                     }
                 }
 
-                case "drop", " drop", "drop " -> {
+                case "drop" -> {
 
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
@@ -93,20 +105,18 @@ public class RunGame {
                         System.out.print("[Type here]: ");
 
                     } else {
-                        System.out.println("What would you like to drop?");
-                        String userChoice = userInput.nextLine();
-                        boolean success = player.dropItem(userChoice);
+                        boolean success = player.dropItem(secondWord);
                         if (success) {
-                            System.out.println("You dropped: " + userChoice);
+                            System.out.println("You dropped: " + secondWord);
                         } else {
-                            System.out.println("You can't drop because you don't have " + userChoice);
+                            System.out.println("You can't drop because you don't have " + secondWord);
                         }
-                        player.dropItem(userChoice);
+                        player.dropItem(secondWord);
                         System.out.print("[Type here]: ");
                     }
                 }
 
-                case "eat", " eat", "eat " -> {
+                case "eat" -> {
 
                     if (player.playerHasAnyItem() == false) {
                         System.out.println("");
@@ -114,24 +124,24 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type here]: ");
                     } else {
-                        System.out.println("What would you like to eat?");
-                        String userChoice = userInput.nextLine();
-                        boolean success = player.eatFood(userChoice);
+
+
+                        boolean success = player.eatFood(secondWord);
                         if (success) {
-                            System.out.println("You ate: " + userChoice);
+                            System.out.println("You ate: " + secondWord);
                             System.out.println("");
                             System.out.println("Player receive +50 " + player.getHealthStatus());
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
                         } else {
-                            System.out.println("You can't eat " + userChoice + ". Are you crazy?");
+                            System.out.println("You can't eat " + secondWord + ". Are you crazy?");
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
                         }
                     }
                 }
 
-                case "equip", " equip", "equip " -> {
+                case "equip" -> {
 
                     if (player.playerHasAnyWeapon() == false) {
                         System.out.println("");
@@ -151,7 +161,7 @@ public class RunGame {
                     }
                 }
 
-                case "attack", " attack", "attack " -> {
+                case "attack" -> {
 
                     if (player.isEquipped() == false) {
                         System.out.println("");
@@ -173,8 +183,8 @@ public class RunGame {
 
                     } else {
 
-                        player.playerAttack();
-                        Thread.sleep(1500);
+                     //    player.playerAttack();   // <- Husk: Skal have et enemy-objekt!
+                         Thread.sleep(1500);
                         player.enemyAttack();
                         Thread.sleep(1500);
 
@@ -189,7 +199,7 @@ public class RunGame {
                     }
                 }
 
-                case "health", " health", "health " -> {
+                case "health" -> {
                     player.getHealthStatus();
                     int tempHealth = player.getHealthStatus();
                     System.out.println(tempHealth);
@@ -201,7 +211,7 @@ public class RunGame {
                     }
                 }
 
-                case "inventory", "inv", " inventory", "inventory ", " inv", "inv " -> {
+                case "inventory", "inv" -> {
                     System.out.println("");
                     System.out.println("-------------------");
                     System.out.println("Player inventory is: ");
@@ -213,7 +223,7 @@ public class RunGame {
                     System.out.print("[Type next move here]: ");
                 }
 
-                case "exit", " exit", "exit " -> {
+                case "exit" -> {
                     System.out.println("""
                                 
                             ---------------------

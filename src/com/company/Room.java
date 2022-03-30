@@ -14,7 +14,8 @@ public class Room {
     private Room north;
     private Room south;
     private ArrayList<Item> roomItems;
-    //private ArrayList<Item> roomItems = new ArrayList<>();
+
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
 
     // Room Constructor
@@ -95,21 +96,32 @@ public class Room {
         return null;
     }
 
-    //public void deleteItem(Item item) {
-      //  this.roomItems.remove(item);
-    //}
-
 
     public boolean roomHasAnyItem() {
         boolean anyItem = roomItems.size() > 0;
         return anyItem;
     }
 
-    /* public Map<Object, Object> getEnemies() {
-        return null;
+    public boolean roomHasAnyEnemy() {
+        boolean anyEnemy = enemies.size() > 0;
+        return anyEnemy;
     }
 
-     */
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public void addEnemy (Enemy enemy) {
+        enemies.add(enemy);
+    }
+
+
 }
 
 

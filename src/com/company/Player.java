@@ -174,6 +174,17 @@ public class Player {
         return null;
     }
 
+
+    public Enemy findRoomEnemy(String enemyName) {
+        ArrayList<Enemy> enemies = currentRoom.getEnemies();
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getEnemyName().equals(enemyName)) {
+                return enemies.get(i);
+            }
+        }
+        return null;
+    }
+
     public boolean playerHasAnyItem() {
         return playerItems.size() > 0;
     }
@@ -321,7 +332,7 @@ public class Player {
         }
     }
 
-    public void playerAttack() {
+    public void playerAttack(Enemy enemy) {
 
         Random randomNumberAttack = new Random();
 
@@ -329,7 +340,8 @@ public class Player {
 
         if (A == 1 || A == 2 || A == 3) {
 
-            enemyHealthStatus -= 25;
+            enemy.updateHealthStatus(-25);
+         //   enemyHealthStatus -= 25;
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");

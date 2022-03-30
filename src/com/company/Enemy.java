@@ -33,4 +33,7 @@ public class Enemy {
     }
 
 
+    public void updateHealthStatus(int healthChange) {
+        enemyHealthStatus += healthChange;
+    }
 }

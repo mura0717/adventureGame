@@ -1,14 +1,11 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Map {
 
-    public Room currentRoom;
+    private Room startRoom;
 
-    public Room getCurrentRoom() {
-       return currentRoom;
+    public Room getStartRoom() {
+       return startRoom;
    }
     //private String itemsList;
 
@@ -113,7 +110,7 @@ public class Map {
         room9.setNorth(room6);
         room9.setWest(room8);
 
-        currentRoom = room1;
+        startRoom = room1;
 
         // Items & Their Locations:
         room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +50 in health, Yum!", 50));
@@ -123,6 +120,9 @@ public class Map {
         room6.addItem(new RangedWeapon("grenade", "A grenade. Could use it to blow big time.", 75));
         room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly."));
         room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
+
+        room8.addEnemy(new Enemy("Guard ", "Look aggressive ", 100));
+        room5.addEnemy(new Enemy("The Boss ", "Look more aggressive ", 150));
 
     }
 
