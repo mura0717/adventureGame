@@ -1,8 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Room {
 
@@ -14,11 +12,9 @@ public class Room {
     private Room north;
     private Room south;
 
-
+    // Room Array Lists
     private ArrayList<Item> roomItems;
-
     private ArrayList<Enemy> enemies = new ArrayList<>();
-
 
     // Room Constructor
     public Room(String name, String description){
@@ -26,6 +22,7 @@ public class Room {
         this.description = description;
         this.roomItems = new ArrayList<>();
     }
+
     // Room Setters
     public void setEast(Room east) {
         this.east = east;
@@ -44,7 +41,6 @@ public class Room {
     }
 
     // Room Getters
-
     public String getName() {
         return name;
     }
@@ -98,25 +94,26 @@ public class Room {
         return null;
     }
 
-
     public boolean roomHasAnyItem() {
         boolean anyItem = roomItems.size() > 0;
         return anyItem;
     }
 
+    //roomEnemies & ArrayList methods
+    public boolean roomHasAnyEnemy() {
+        boolean anyEnemy = enemies.size() > 0;
+        return anyEnemy;
+    }
 
     public void addEnemy (Enemy enemy) {
         enemies.add(enemy);
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public ArrayList<Enemy> getRoomEnemies() {
         return enemies;
     }
 
-    public boolean roomHasAnyEnemy() {
-        boolean anyEnemy = enemies.size() > 0;
-        return anyEnemy;
-    }
+
 }
 
 

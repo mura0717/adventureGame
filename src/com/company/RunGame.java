@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -12,11 +11,6 @@ public class RunGame {
     private Map map = new Map();
 
     private Player player = new Player();
-
-
-
-
-
 
     public void playGame() throws InterruptedException {
 
@@ -64,7 +58,7 @@ public class RunGame {
                         System.out.println("------------------------------------");
 
                         ArrayList<Item> items = player.getCurrentRoom().getRoomItems();
-                        ArrayList<Enemy> enemies = (ArrayList<Enemy>) player.getCurrentRoom().getEnemies();
+                        ArrayList<Enemy> enemies = (ArrayList<Enemy>) player.getCurrentRoom().getRoomEnemies();
 
                         for(Item item : items) {
                             System.out.println(item.toString()); // getItemDescription()
@@ -136,7 +130,7 @@ public class RunGame {
                         if (success) {
                             System.out.println("You ate: " + secondWord);
                             System.out.println("");
-                            System.out.println("Player receive +50 " + player.getHealthStatus());
+                            System.out.println("Player receive +50 " + player.getPlayerHealthStatus());
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
                         } else {
@@ -155,7 +149,6 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-
                         boolean success = player.equipWeapon(secondWord);
                         if (success) {
                             System.out.println("You equipped: " + secondWord);
@@ -174,45 +167,55 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
 
-                    } else if (player.isEquipped() == false) {
-
-                        player.enemyChanceAttack();
-
-                        System.out.println("------------------------------------------------------");
-                        System.out.println("");
-                        System.out.println("(You can't attack the enemy, before equipping a weapon.)");
-                        System.out.println("");
-                        System.out.println("(The enemy hit you, for that mistake)");
-                        System.out.println("");
-                        System.out.print("[Type next move here]: ");
-
                     } else {
+                        boolean equipSuccess = player.isEquipped();
+                        if (equipSuccess) {
+                            if (player.getCurrentRoom().roomHasAnyEnemy() == false) {
+                                System.out.println("");
+                                System.out.println("(There is no one to attack in this room. So chill out.)");
+                                System.out.println("");
+                                System.out.print("[Type next move here]: ");
+                            } else {
+                                boolean enemySuccess = player.getCurrentRoom().roomHasAnyEnemy();
+                                if (enemySuccess) {
+                                    boolean isCommandCenter = player.getCurrentRoom().getName().equals("Command Center");
+                                    if (isCommandCenter) {
+                                        //System.out.println(player.getCurrentRoom().getName());
+                                        player.playerGuardAttack();
+                                        Thread.sleep(1500);
+                                        player.enemyGuardAttackPlayer();
+                                        Thread.sleep(1500);
+                                        System.out.println(" ");
+                                        Thread.sleep(500);
+                                        System.out.print("[Type next move here]: ");
+                                    } else {
+                                        //System.out.println(player.getCurrentRoom().getName()); {
+                                        //player.playerAttack(secondWord);
+                                        player.playerBossAttack();
+                                        Thread.sleep(1500);
+                                        player.enemyBossAttackPlayer();
+                                        Thread.sleep(1500);
+                                        System.out.println(" ");
+                                        Thread.sleep(500);
+                                        System.out.print("[Type next move here]: ");
+                                    }
 
-                        player.playerAttack();   // <- Husk: Skal have et enemy-objekt!
-                        Thread.sleep(1500);
-                        player.enemyAttack();
-                        Thread.sleep(1500);
+                                }
 
-                        System.out.println(" ");
-                       /* System.out.println("-----------------------------------------------------------");
-                        System.out.println("The enemy's health is now: " + startRoom.getEnemies().get(0).getEnemyHealth());
-                        System.out.println(" ");
-                        System.out.println("The player's health is now: " + player.getHealthStatus());
-                        System.out.println("-----------------------------------------------------------"); */
-                        Thread.sleep(1500);
-                        System.out.print("[Type next move here]: ");
+                            }
+                        }
                     }
                 }
 
                 case "health" -> {
-                    player.getHealthStatus();
-                    int tempHealth = player.getHealthStatus();
+                    player.getPlayerHealthStatus();
+                    int tempHealth = player.getPlayerHealthStatus();
                     System.out.println(tempHealth);
 
-                    if (tempHealth <= 100 && tempHealth > 50) {
+                    if (tempHealth > 75) {
                         System.out.println(tempHealth + " - You're in good health!");
-                    } else if (tempHealth < 50) {
-                        System.out.println(tempHealth + " - You need food, for better health, so avoid combat.");
+                    } else if (tempHealth < 75) {
+                        System.out.println(tempHealth + " - You need food for better health, so avoid combat.");
                     }
                 }
 
@@ -256,7 +259,6 @@ public class RunGame {
         }
     }
 
-
     public void showInventory() {
         ArrayList<Item> items = player.getPlayerItems();
         for (int i = 0; i < items.size(); i++) {
@@ -268,5 +270,15 @@ public class RunGame {
     }
 }
 
+    /*
+                        System.out.println("------------------------------------------------------");
+                        System.out.println("");
+                        System.out.println("(You can't attack the enemy, before equipping a weapon.)");
+                        System.out.println("");
+                        System.out.println("(The enemy hit you, for that mistake)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+
+     */
 
 

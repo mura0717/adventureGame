@@ -2,14 +2,14 @@ package com.company;
 
 public abstract class Weapon extends Item {
 
-    private int healthDamage;
+    private int weaponHealthDamage;
 
-    public Weapon(String weaponName, String weaponDescription, int healthDamage) {
+    public Weapon(String weaponName, String weaponDescription, int weaponHealthDamage) {
         super(weaponName, weaponDescription);
-        this.healthDamage = healthDamage;
+        this.weaponHealthDamage = weaponHealthDamage;
     }
 
-    public int getHealthDamage() {
-        return healthDamage;
+    public int getWeaponHealthDamage() {
+        return weaponHealthDamage;
     }
 }

@@ -33,9 +33,7 @@ public class Item {
 
     // Item toString
     public String toString() {
-        return itemDescription + " - " + itemName;
-
-
+        return itemDescription;
     }
 
     //not sure what this does:

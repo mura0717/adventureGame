@@ -6,8 +6,7 @@ import java.util.Random;
 public class Player {
 
     private Room currentRoom;
-    private int playerHealthStatus = 200;
-   // private int enemyHealthStatus = 100;
+    private int playerHealthStatus = 100;
     private Weapon equippedWeapon;
 
     private ArrayList<Item> playerItems = new ArrayList<>();
@@ -29,7 +28,7 @@ public class Player {
     }
 
     // Player Health Status Getter & Setter
-    public int getHealthStatus() {
+    public int getPlayerHealthStatus() {
         return playerHealthStatus;
     }
 
@@ -177,9 +176,6 @@ public class Player {
         return null;
     }
 
-
-
-
     public boolean playerHasAnyItem() {
         return playerItems.size() > 0;
     }
@@ -207,6 +203,15 @@ public class Player {
         }
     }
 
+    public boolean playerHasAnyFood() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i) instanceof Food) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean eatFood(String foodName) {
         Item food = findPlayerItem(foodName);
         if (food instanceof Food) {
@@ -217,9 +222,9 @@ public class Player {
         return false;
     }
 
-    public boolean playerHasAnyFood() {
+    public boolean playerHasAnyWeapon() {
         for (int i = 0; i < playerItems.size(); i++) {
-            if (playerItems.get(i) instanceof Food) {
+            if (playerItems.get(i) instanceof Weapon) {
                 return true;
             }
         }
@@ -235,117 +240,47 @@ public class Player {
         return false;
     }
 
-    public boolean playerHasAnyWeapon() {
-        for (int i = 0; i < playerItems.size(); i++) {
-            if (playerItems.get(i) instanceof Weapon) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean isEquipped() {
         if (equippedWeapon != null)
             return true;
         else
             return false;
     }
-/*
-    public void attackEnemy() {
-        if (isEquipped()) {
-            enemyHealthStatus -= ((Weapon) equippedWeapon).getHealthDamage();
+
+    /*public Enemy findRoomEnemy(String enemyName) {
+        ArrayList<Enemy> enemies = currentRoom.getRoomEnemies();
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getEnemyName().equals(enemyName)) {
+                return enemies.get(i);
+            }
         }
+        return null;
     }
-    */
+     */
 
-/*
-    public boolean enemyIsCurrent() {
-        if (currentRoom.getEnemies() != null)
-            return true;
-        else
-            return false;
-    }
-     enemyHealthStatus -= ((Weapon) weapon).getHealthDamage()
-
- */
-
-
-
-
-    public void enemyChanceAttack() {
-
-        Random randomNumberAttack = new Random();
-
-        int A = randomNumberAttack.nextInt(1, 7);
-
-        if (A == 1 || A == 2 || A == 3) {
-
-            System.out.println("");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("Player was hit - lose -25 healthpoints.");
-            System.out.println("-----------------------------------------------------------");
-
-            playerHealthStatus -= 25;
-
-
-        } else if (A == 4 || A == 5 || A == 6) {
-
-            System.out.println("");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("Player were lucky, you didn't get hit. ");
-            System.out.println("-----------------------------------------------------------");
-
+    /*public void playerAttack(String enemyName) {
+        Enemy enemy = findRoomEnemy(enemyName);
+        if (enemy.getEnemyName().equals("")) {
+            playerBossAttack();
+            System.out.println(enemyName);
         }
-
-
+        else if (enemy.getEnemyName().equals("))
+            playerGuardAttack();
     }
 
-    public void enemyAttack() {
+     */
+
+    public void playerBossAttack() {
 
         Random randomNumberAttack = new Random();
 
         int A = randomNumberAttack.nextInt(1, 7);
 
-        if (A == 1 || A == 2 || A == 3 || A == 4 || A == 5 || A == 6) {
+        if (A == 1 || A == 2 || A == 3 || A == 4) {
 
-            playerHealthStatus -= 50;
+            Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
-            System.out.println("");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("Player was hit - " + getHealthStatus() + " health");
-            System.out.println("-----------------------------------------------------------");
-
-            playerDies();
-
-
-        } /* else if (A == 4 || A == 5 || A == 6) {
-
-            System.out.println("");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("Player were lucky, you didn't get hit. ");
-            System.out.println("-----------------------------------------------------------");
-
-
-        } */
-    }
-
-    public void playerAttack() { // husk at sætte parametre her.
-
-        Random randomNumberAttack = new Random();
-
-        int A = randomNumberAttack.nextInt(1, 7);
-
-        if (A == 1 || A == 2 || A == 3 || A == 4 || A == 5 || A == 6) {
-
-          Enemy enemy = currentRoom.getEnemies().get(0);
-
-          enemy.enemyHealthUpdated(equippedWeapon.getHealthDamage());
-
-            // enemies.get(0).enemyHealthUpdated();
-
-          //  System.out.println(enemies);
-
-            // enemyHealthStatus -= 25;
+            enemy.enemyHealthUpdated(equippedWeapon.getWeaponHealthDamage());
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
@@ -354,21 +289,92 @@ public class Player {
 
             enemyDies();
 
-            winningTheGame();
-
-
-        } /*else if (A == 4 || A == 5 || A == 6) {
-
-
+        } else if (A == 5 ||  A == 6) {
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
             System.out.println("Enemy didn't get hit. ");
             System.out.println("-----------------------------------------------------------");
+        }
+    }
+
+    public void playerGuardAttack() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3) {
+
+            Enemy enemy = currentRoom.getRoomEnemies().get(0);
+
+            enemy.enemyHealthUpdated(equippedWeapon.getWeaponHealthDamage());
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy was hit - " + enemy.getEnemyHealth() + " health");
+            System.out.println("-----------------------------------------------------------");
+
+            enemyDies();
+
+        } else if ( A == 4 || A == 5 || A == 6) {
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Enemy didn't get hit. ");
+            System.out.println("-----------------------------------------------------------");
+        }
+    }
+
+    public void enemyBossAttackPlayer() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3 ) {
+
+            playerHealthStatus -= 25;
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player was hit = " + getPlayerHealthStatus() + " health.");
+            System.out.println("-----------------------------------------------------------");
+
+        } else if (A == 4 || A == 5 || A == 6) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player were lucky, you didn't get hit.");
+            System.out.println("-----------------------------------------------------------");
+        }
+    }
+
+    public void enemyGuardAttackPlayer() {
+
+        Random randomNumberAttack = new Random();
+
+        int A = randomNumberAttack.nextInt(1, 7);
+
+        if (A == 1 || A == 2 || A == 3 ) {
+
+            playerHealthStatus -= 20;
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player was hit - " + getPlayerHealthStatus() + " health");
+            System.out.println("-----------------------------------------------------------");
+
+            playerDies();
 
 
-        } */
+        } else if (A == 4 || A == 5 || A == 6) {
+
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Player were lucky, you didn't get hit.");
+            System.out.println("-----------------------------------------------------------");
 
 
+        }
     }
 
     public void playerDies() {
@@ -382,17 +388,15 @@ public class Player {
             System.out.println("-----------------------------------------------------------");
 
             System.exit(0);
-
-
         }
 
     }
+
     public void enemyDies() {
 
-        Enemy enemy = currentRoom.getEnemies().get(0);
+        Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
         if (enemy.getEnemyHealth() <= 0) {
-
 
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
@@ -401,23 +405,19 @@ public class Player {
             System.out.println("The enemy dropped an item - take a look");
             System.out.println("-----------------------------------------------------------");
 
-            // System.exit(0);
-
            // currentRoom.getEnemies().remove(enemy);
 
-            currentRoom.getEnemies().remove(0);
+            currentRoom.getRoomEnemies().remove(0);
             // Begge ting virker.
 
-            currentRoom.getRoomItems().add(new MeleeWeapon("baton", "the guards baton - +50 damage", 50));
+            currentRoom.getRoomItems().add(new RangedWeapon("grenade", "Military Issued Grenade- Could use it to blow big time? - +125 damage", 125));
             // koden der får en hvilken somhelst fjende til at tabe stuff.
-
-
         }
     }
 
     public void winningTheGame() { // Virker ikke.
 
-        if (currentRoom.getEnemies().remove(null)) {
+        if (currentRoom.getRoomEnemies().remove(null)) {
 
 
             System.out.println("");

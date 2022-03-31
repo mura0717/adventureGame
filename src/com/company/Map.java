@@ -13,8 +13,6 @@ public class Map {
     //ArrayList <Item> items = new ArrayList <> (List.of(itemsList));
 
 
-
-
     public void buildMap() {
     // Room Descriptions:
         Room room1 = new Room("Ground Zero", """
@@ -113,18 +111,16 @@ public class Map {
         startRoom = room1;
 
         // Items & Their Locations:
-        room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +75 in health, Yum!", 75));
+        room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +75 in health, Yum!", 80));
         room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 25));
         room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly."));
         room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark."));
-        room6.addItem(new RangedWeapon("grenade", "A grenade. Could use it to blow big time? - +75 damage", 75));
+        room6.addItem(new Item("report", "A Top Secret Report - It reads: The portal finally worked. But John T. McGinley, the head scientist became insane and killed everyone except for his loyal guard. If you find them, don't think twice and kill'em all. A friend."));
         room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly."));
         room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
 
-        room1.addEnemy(new Enemy("Guard ", "Look aggressive ", 100));
-        room5.addEnemy(new Enemy("The Boss ", "Looks ugly ", 150));
-
-
+        room8.addEnemy(new Enemy("Guard ", "Look aggressive ", 100));
+        room5.addEnemy(new Enemy("The Boss ", "Looks ugly ", 200));
     }
 
 }

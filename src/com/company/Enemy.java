@@ -33,13 +33,13 @@ public class Enemy {
         return enemyDescription;
     }
 
+    public int getEnemyHealth() {
+        return enemyHealth;
+    }
+
     public void enemyHealthUpdated(int damage) {
         enemyHealth -= damage;
 
-    }
-
-    public int getEnemyHealth() {
-        return enemyHealth;
     }
 
     public String toString() {
