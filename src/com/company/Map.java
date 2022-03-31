@@ -21,8 +21,6 @@ public class Map {
             Back to square one again? 
             Feel like I forgot something here? """);
 
-
-
         Room room2 = new Room("Corridor", """
             
             
@@ -50,7 +48,7 @@ public class Map {
             You carefully move closer to it and realize that there is button next to it.
             
             You feel the urge to push the button, but you are not sure.
-            Do you want to push the button? """);
+            Do you want to push the button? """, true);
 
         Room room6 = new Room("Cafeteria", """
             
@@ -112,12 +110,12 @@ public class Map {
 
         // Items & Their Locations:
         room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +75 in health, Yum!", 80));
-        room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 25));
-        room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly."));
-        room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark."));
-        room6.addItem(new Item("report", "A Top Secret Report - It reads: The portal finally worked. But John T. McGinley, the head scientist became insane and killed everyone except for his loyal guard. If you find them, don't think twice and kill'em all. A friend."));
-        room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly."));
-        room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what."));
+        room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 100));
+        room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly.", true, false));
+        room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark.", true, false));
+        room6.addItem(new Item("report", "A Top Secret Report - It reads: The portal finally worked. But John T. McGinley, the head scientist became insane and killed everyone except for his loyal guard. If you find them, don't think twice and kill'em all. A friend.", false, true));
+        room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly.", true, false));
+        room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what.", true, false));
 
         room8.addEnemy(new Enemy("Guard ", "Look aggressive ", 100));
         room5.addEnemy(new Enemy("The Boss ", "Looks ugly ", 200));

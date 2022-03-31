@@ -1,18 +1,27 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Item {
 
     private String itemName;
     private String itemDescription;
+    private boolean isUsable;
+    private boolean isReadable;
     private ArrayList <Item> items = new ArrayList();
 
     //Item Constructer
     public Item(String itemName, String itemDescription) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
+        this.items = items;
+    }
+
+    public Item(String itemName, String itemDescription, boolean isUsable, boolean isReadable) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.isUsable = isUsable;
+        this.isReadable = isReadable;
         this.items = items;
     }
 

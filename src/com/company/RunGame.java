@@ -37,7 +37,18 @@ public class RunGame {
 
             switch (firstWord) {
 
-                case "go north", "go n", "n", "north" -> player.goNorth();
+                case "go north", "go n", "n", "north" -> {
+                    if (player.getCurrentRoom().getName().equals("Command Center")) {
+                        if (startRoom.noEnemy == true && player.isDoorLocked() == false) {
+                            player.goNorth();
+                        } else {
+                            player.lockedWay();
+                        }
+
+                }   else {
+                        player.goNorth();
+                    }
+                }
 
                 case "go south", "go s", "s", "south" -> player.goSouth();
 
@@ -116,6 +127,24 @@ public class RunGame {
                     }
                 }
 
+                case "use" -> {
+
+                    if (player.playerHasAnyItem() == false) {
+                        System.out.println("");
+                        System.out.println("(You don't have anything to use.)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    } else {
+                        boolean success = player.useItem(secondWord);
+                        if (success) {
+                            System.out.println("Took item: " + secondWord);
+                        } else {
+                            System.out.println("No item named " + secondWord + " in this room.");
+                        }
+                        System.out.print("[Type next move here]: ");
+                    }
+                }
+
                 case "eat" -> {
 
                     if (player.playerHasAnyItem() == false) {
@@ -182,21 +211,21 @@ public class RunGame {
                                     if (isCommandCenter) {
                                         //System.out.println(player.getCurrentRoom().getName());
                                         player.playerGuardAttack();
-                                        Thread.sleep(1500);
+                                        Thread.sleep(0);
                                         player.enemyGuardAttackPlayer();
-                                        Thread.sleep(1500);
+                                        Thread.sleep(0);
                                         System.out.println(" ");
-                                        Thread.sleep(500);
+                                        Thread.sleep(0);
                                         System.out.print("[Type next move here]: ");
                                     } else {
                                         //System.out.println(player.getCurrentRoom().getName()); {
                                         //player.playerAttack(secondWord);
                                         player.playerBossAttack();
-                                        Thread.sleep(1500);
+                                        Thread.sleep(0);
                                         player.enemyBossAttackPlayer();
-                                        Thread.sleep(1500);
+                                        Thread.sleep(0);
                                         System.out.println(" ");
-                                        Thread.sleep(500);
+                                        Thread.sleep(0);
                                         System.out.print("[Type next move here]: ");
                                     }
 
