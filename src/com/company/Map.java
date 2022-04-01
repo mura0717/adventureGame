@@ -31,7 +31,7 @@ public class Map {
             
             
             You can't see anything, it is completely dark. 
-            You can't help but think: 'I wish I had a light.' """);
+            You can't help but think: 'I wish I had a light.' """, false, false);
 
         Room room4 = new Room("Storage", """
             
@@ -109,16 +109,16 @@ public class Map {
         startRoom = room1;
 
         // Items & Their Locations:
-        room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +75 in health, Yum!", 80));
-        room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 100));
+        room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +80 in health, Yum!", 80));
+        room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 25));
         room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly.", true, false));
         room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark.", true, false));
-        room6.addItem(new Item("report", "A Top Secret Report - It reads: The portal finally worked. But John T. McGinley, the head scientist became insane and killed everyone except for his loyal guard. If you find them, don't think twice and kill'em all. A friend.", false, true));
+        room6.addItem(new Item("report", "A Top Secret Report.", false, true));
         room7.addItem(new Item("key card", "An electronic key card. Could use it to open a locked electronic door possibly.", true, false));
         room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what.", true, false));
 
-        room8.addEnemy(new Enemy("Guard ", "Look aggressive ", 100));
-        room5.addEnemy(new Enemy("The Boss ", "Looks ugly ", 200));
+        room8.addEnemy(new Enemy("Guard ", "Look aggressive.", 100));
+        room5.addEnemy(new Enemy("The Boss ", "Looks ugly.", 200));
     }
 
 }

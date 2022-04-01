@@ -31,23 +31,24 @@ public class Player {
         return playerHealthStatus;
     }
 
-
     public void setHealthStatus(int healthStatus) {
         this.playerHealthStatus = healthStatus;
     }
 
-    /*
-        // Enemy Health Status Getter
-        public int getEnemyHealthStatus() {
-            return enemyHealthStatus;
-        }
-    */
-    // equippedWeapon Getter
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
 
     // Checks if the direction given by the Player is possible.
+    public void rightWay() {
+        System.out.println("");
+        System.out.println("-----------------------------------");
+        System.out.println("Entering: " + currentRoom.toString());
+        System.out.println("-----------------------------------");
+        System.out.println("");
+        System.out.print("[Type next move]: ");
+    }
+
     public void wrongWay() {
         System.out.print("""
                         
@@ -62,56 +63,28 @@ public class Player {
     public boolean wrongWayGuard() {
         System.out.print("""
                         
-                ---------------------------------------------
-                The Guard is blocking your way. - Remove him away first. 
-                ---------------------------------------------
-                        
-                [Type again here]:
+                ------------------------------------------------
+                The Guard is blocking your way. - Kill him first. 
+                ------------------------------------------------
                 """);
         return true;
     }
 
-   /* public boolean isGuardRemoved() {
-        Enemy enemy = currentRoom.getRoomEnemies().get(0);
-        if (enemy.getEnemyHealth() <= 0) {;
-            return true;
-        }
-        return false;
-    }
-
-    */
-
-
-    public boolean isDoorLocked() {
-        Room requestedRoom = currentRoom.getNorth();
-        if (requestedRoom.isLocked()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // * --- Forsøg på at skave lukkede døre op til fjenden.
-
-    public void lockedWay() {
+    public void lockedDoor() {
         System.out.print("""
                         
                 ---------------------------------------------
                 That door is locked - Needs a key!
                 ---------------------------------------------
-                        
-                [Type again here]:
+                 
+                [Type next move here]:
                 """);
-    }
-
-    public void getAnyDirection() {
-        Room requestedRoom = currentRoom.getNorth().getEast().getWest().getSouth();
     }
 
     public void goEastLocked() {
         Room requestedRoom = currentRoom.getEast();
         if (requestedRoom != currentRoom) {
-            lockedWay();
+            lockedDoor();
         } else {
             currentRoom = requestedRoom;
             rightWay();
@@ -121,21 +94,13 @@ public class Player {
     public void goWestLocked() {
         Room requestedRoom = currentRoom.getWest();
         if (requestedRoom != currentRoom) {
-            lockedWay();
+            lockedDoor();
         } else {
             currentRoom = requestedRoom;
             rightWay();
         }
     }
 
-    public void rightWay() {
-        System.out.println("");
-        System.out.println("-----------------------------------");
-        System.out.println("Entering: " + currentRoom.toString());
-        System.out.println("-----------------------------------");
-        System.out.println("");
-        System.out.print("[Type next move]: ");
-    }
 
     // Player Movement
     public void goSouth() {
@@ -226,14 +191,31 @@ public class Player {
         }
     }
 
-    public boolean useItem(String itemName) {
-        Item usedItem = findPlayerItem(itemName);
-        if (usedItem instanceof Item) {
-            currentRoom.setLocked(false);
-            return true;
-        } else {
-            return false;
+    public boolean playerHasReadable() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getIsReadable()) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public boolean read (boolean isReadble){
+        Item temp = findPlayerItem(String.valueOf(isReadble));
+            return true;
+        }
+
+    public void unlockDoor(String itemName) {
+            currentRoom.getNorth().setIsLocked(false);
+    }
+
+    public boolean playerHasKey() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getItemName().contains("key")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean playerHasAnyFood() {
@@ -249,7 +231,7 @@ public class Player {
         Item food = findPlayerItem(foodName);
         if (food instanceof Food) {
             playerHealthStatus += ((Food) food).getHealth();
-            playerItems.remove(foodName);
+            playerItems.remove(food);
             return true;
         }
         return false;
@@ -280,36 +262,13 @@ public class Player {
             return false;
     }
 
-    /*public Enemy findRoomEnemy(String enemyName) {
-        ArrayList<Enemy> enemies = currentRoom.getRoomEnemies();
-        for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).getEnemyName().equals(enemyName)) {
-                return enemies.get(i);
-            }
-        }
-        return null;
-    }
-     */
-
-    /*public void playerAttack(String enemyName) {
-        Enemy enemy = findRoomEnemy(enemyName);
-        if (enemy.getEnemyName().equals("")) {
-            playerBossAttack();
-            System.out.println(enemyName);
-        }
-        else if (enemy.getEnemyName().equals("))
-            playerGuardAttack();
-    }
-
-     */
-
     public void playerBossAttack() {
 
         Random randomNumberAttack = new Random();
 
         int A = randomNumberAttack.nextInt(1, 7);
 
-        if (A == 1 || A == 2 || A == 3 || A == 4) {
+        if (A == 1 || A == 2 || A == 3) {
 
             Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
@@ -322,7 +281,7 @@ public class Player {
 
             enemyDies();
 
-        } else if (A == 5 || A == 6) {
+        } else if (A == 4 || A == 5 || A == 6) {
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
             System.out.println("Enemy didn't get hit. ");
@@ -336,7 +295,7 @@ public class Player {
 
         int A = randomNumberAttack.nextInt(1, 7);
 
-        if (A == 1 || A == 2 || A == 3 || A == 4 || A == 5 || A == 6) {
+        if (A == 1 || A == 2 || A == 3) {
 
             Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
@@ -349,13 +308,12 @@ public class Player {
 
             enemyDies();
 
-        } /*else if () {
+        } else if (A == 4 || A == 5 || A == 6) {
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
             System.out.println("Enemy didn't get hit. ");
             System.out.println("-----------------------------------------------------------");
         }
-        */
     }
 
     public void enemyBossAttackPlayer() {
@@ -411,6 +369,15 @@ public class Player {
         }
     }
 
+    public boolean enemiesRemoved() {
+        if (currentRoom.getRoomEnemies().size() == 0) {
+            return true;
+        } else {
+            wrongWayGuard();
+            return false;
+        }
+    }
+
     public void playerDies() {
 
         if (playerHealthStatus <= 0) {
@@ -430,67 +397,52 @@ public class Player {
 
         Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
-        if (enemy.getEnemyHealth() <= 0) {
-
+        if (getCurrentRoom().getName().equals("Command Center") && enemy.getEnemyHealth() <= 0){
+            //enemiesRemoved();
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("Enemy die!, Baby!!");
+            System.out.println("The Guard dies! Baby!");
             System.out.println("");
-            System.out.println("The enemy dropped an item - take a look");
+            System.out.println("The guard dropped an item - take a look");
             System.out.println("-----------------------------------------------------------");
-
-            // currentRoom.getEnemies().remove(enemy);
-
+            System.out.println("");
             currentRoom.getRoomEnemies().remove(0);
-            // Begge ting virker.
+            currentRoom.getRoomItems().add(new RangedWeapon("grenade", "Military Issued Grenade - Could use it to blow big time? - +125 damage", 125));
 
-            currentRoom.getRoomItems().add(new RangedWeapon("grenade", "Military Issued Grenade- Could use it to blow big time? - +125 damage", 125));
-            // koden der får en hvilken somhelst fjende til at tabe stuff.
+        } else if (getCurrentRoom().getName().equals("The Portal") && enemy.getEnemyHealth() <= 0) {
+            //enemiesRemoved();
+            System.out.println("");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("John T. McKinley falls on the floor.");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("");
+            currentRoom.getRoomEnemies().remove(0);
+            System.out.println("");
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println("""
+                    You killed John T. McKinley a.k.a. The Mad Scientist a.k.a. The Boss! - That's insane!.
+                    After you kill the boss, you see a control board right next to the Portal.
+                    You use the key card you found in the locker to start it up. 
+                    And then you insert the valve to turn the Portal on.
+                    The Portal starts to turn and soon a black void is formed inside its ring.
+                    You walk to towards it and step into the void and travel to the far reaches of the galaxy.
+                    
+                    The Adventure is finished! WELL DONE.
+                    """);
+            System.out.println("----------------------------------------------------------------------");
+            System.out.println("");
+            System.exit(0);
         }
+    }
+}
 
-
-
-       /* public void winningTheGame () { // Virker ikke.
-
-            if (currentRoom.getRoomEnemies().remove(null)) {
-
-                System.out.println("");
-                System.out.println("-----------------------");
-                System.out.println("Player killed every man! - That lunatic!.");
-                System.out.println("");
-                System.out.println("The Adventure is done!!");
-                System.out.println("-----------------------");
-                System.out.println("");
-
-                System.exit(0);
-
-
-            }
-
+       /*
+&& enemy2.getEnemyHealth() <= 0
         */
 
-    }
 
 
-       /* public void winningTheGame () { // Virker ikke.
-
-            if (currentRoom.getRoomEnemies().remove(null)) {
-
-                System.out.println("");
-                System.out.println("-----------------------");
-                System.out.println("Player killed every man! - That lunatic!.");
-                System.out.println("");
-                System.out.println("The Adventure is done!!");
-                System.out.println("-----------------------");
-                System.out.println("");
-
-                System.exit(0);
 
 
-            }
-
-        */
-
-    }
 
 

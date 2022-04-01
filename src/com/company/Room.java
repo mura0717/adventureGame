@@ -11,25 +11,37 @@ public class Room {
     private Room west;
     private Room north;
     private Room south;
-    private boolean isLocked = false;
-    boolean noEnemy;
+    private boolean isLocked = true;
+    private boolean noEnemy = true;
+    private boolean isLit = true;
 
     // Room Array Lists
     private ArrayList<Item> roomItems;
     private ArrayList<Enemy> enemies = new ArrayList<>();
 
-    // Room Constructor
+    // Room Constructor 1
     public Room(String name, String description){
         this.name = name;
         this.description = description;
         this.roomItems = new ArrayList<>();
     }
 
+    // Room Constructor 2: isLocked & noEnemy added
     public Room(String name, String description, boolean isLocked){
         this.name = name;
         this.description = description;
         this.roomItems = new ArrayList<>();
         this.isLocked = isLocked;
+        this.noEnemy = noEnemy;
+    }
+
+    // Room Constructor : isLitadded
+    public Room(String name, String description, boolean isLocked, boolean isLit){
+        this.name = name;
+        this.description = description;
+        this.roomItems = new ArrayList<>();
+        this.isLocked = isLocked;
+        this.isLit = isLit;
     }
 
     // Room Setters
@@ -49,9 +61,6 @@ public class Room {
         this.south = south;
     }
 
-    public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
 
     // Room Getters
     public String getName() {
@@ -60,10 +69,6 @@ public class Room {
 
     public String getDescription() {
         return description;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
     }
 
     public Room getEast() {
@@ -82,6 +87,7 @@ public class Room {
         return south;
     }
 
+
     // Room toString
     public String toString() {
         return name + description;
@@ -94,6 +100,15 @@ public class Room {
 
     public void setRoomItems(ArrayList<Item> roomItems) {
         this.roomItems = roomItems;
+    }
+
+    //Room isLit Getter & Setter
+    public void setLit(boolean lit) {
+        isLit = lit;
+    }
+
+    public boolean isLit() {
+        return isLit;
     }
 
     //roomItems & ArrayList methods
@@ -116,7 +131,7 @@ public class Room {
         return anyItem;
     }
 
-    //roomEnemies & ArrayList methods
+    //roomEnemies Arraylist, Methods, Getters & Setters
     public boolean roomHasAnyEnemy() {
         boolean anyEnemy = enemies.size() > 0;
         return anyEnemy;
@@ -125,30 +140,27 @@ public class Room {
     public void addEnemy (Enemy enemy) {
         enemies.add(enemy);
     }
-    /*public Enemy removeEnemy (Enemy enemy) {
-        for (int i = 0; i < enemies.size(); i++) {
-            Item temp = enemies.get(i);
-            if (temp.getItemName().equals(enemy.getEnemyName())) {
-                roomItems.remove(temp);
-            }
-        }
-        return null;
-    }
-
-     */
 
     public ArrayList<Enemy> getRoomEnemies() {
         return enemies;
     }
 
-    public boolean enemiesRemoved() {
-        if (enemies.size() == 0) {
-            noEnemy = true;
-            return noEnemy;
-        } else {
-            noEnemy = false;
-            return noEnemy;
-        }
+    public boolean getIsNoEnemy() {
+        return noEnemy;
+    }
+
+    //Door 8 to 5 unlock: Methods, Getters & Setters
+    public void setIsLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public boolean getIsLocked() {
+        return isLocked;
+    }
+
+    public boolean isDoorLocked() {
+        Room requestedRoom = getNorth();
+        return requestedRoom.getIsLocked();
     }
 
 }

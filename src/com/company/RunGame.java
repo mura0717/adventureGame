@@ -39,12 +39,11 @@ public class RunGame {
 
                 case "go north", "go n", "n", "north" -> {
                     if (player.getCurrentRoom().getName().equals("Command Center")) {
-                        if (startRoom.noEnemy == true && player.isDoorLocked() == false) {
+                        if (player.enemiesRemoved() == true && player.getCurrentRoom().isDoorLocked() == false) {
                             player.goNorth();
                         } else {
-                            player.lockedWay();
+                            player.lockedDoor();
                         }
-
                 }   else {
                         player.goNorth();
                     }
@@ -57,8 +56,6 @@ public class RunGame {
                 case "go west", "go w", "w", "west" -> player.goWest();
 
                 case "look" -> {
-
-
                     if (player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
@@ -127,43 +124,79 @@ public class RunGame {
                     }
                 }
 
-                case "use" -> {
-
-                    if (player.playerHasAnyItem() == false) {
+                case "unlock" -> {
+                    if (player.playerHasKey() == false) {
                         System.out.println("");
-                        System.out.println("(You don't have anything to use.)");
+                        System.out.println("-------------------------");
+                        System.out.println("(You don't have the key.)");
+                        System.out.println("-------------------------");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        boolean success = player.useItem(secondWord);
-                        if (success) {
-                            System.out.println("Took item: " + secondWord);
-                        } else {
-                            System.out.println("No item named " + secondWord + " in this room.");
+                        boolean playerHasKeySuccess = player.playerHasKey();
+                        if (playerHasKeySuccess)
+                            if (player.getCurrentRoom().getName().equals("Command Center")) {
+                                player.unlockDoor(secondWord);
+                                System.out.println("");
+                                System.out.println("----------------------");
+                                System.out.println("You unlocked the door.");
+                                System.out.println("----------------------");
+                                System.out.println("");
+                                System.out.print("[Type next move here]: ");
+                             } else {
+                                System.out.println("");
+                                System.out.println("---------------------------");
+                                System.out.println("There is no door to unlock.");
+                                System.out.println("---------------------------");
+                                System.out.println("");
+                                System.out.print("[Type next move here]: ");
                         }
-                        System.out.print("[Type next move here]: ");
-                    }
                 }
+            }
 
                 case "eat" -> {
-
-                    if (player.playerHasAnyItem() == false) {
+                    if (player.playerHasAnyFood() == false) {
                         System.out.println("");
                         System.out.println("(Nothing to eat)");
                         System.out.println("");
                         System.out.print("[Type here]: ");
                     } else {
-
-
                         boolean success = player.eatFood(secondWord);
                         if (success) {
                             System.out.println("You ate: " + secondWord);
                             System.out.println("");
-                            System.out.println("Player receive +50 " + player.getPlayerHealthStatus());
+                            System.out.println("Player receive +80 " + player.getPlayerHealthStatus());
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
                         } else {
-                            System.out.println("You can't eat " + secondWord + ". Are you crazy?");
+                            System.out.print("You can't eat ");
+                            System.out.print(secondWord==""?"nothing" : secondWord);
+                            System.out.println(". Are you crazy?");
+                            System.out.println("");
+                            System.out.print("[Type next move here]: ");
+                        }
+                    }
+                }
+
+                case "read" -> {
+                    if (player.playerHasReadable() == false) {
+                        System.out.println("");
+                        System.out.println("-------------------");
+                        System.out.println("(Nothing to read.)");
+                        System.out.println("-------------------");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    } else {
+                        player.read(Boolean.parseBoolean(secondWord)); {
+                            System.out.println("");
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println(""" 
+                                                  The portal finally worked.  
+                                                  But the head scientist (John T. McGinley) became insane 
+                                                  and killed everyone except for his loyal guard. 
+                                                  If you find them, don't think twice and kill them. 
+                                                  """);
+                            System.out.println("--------------------------------------------------------");
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
                         }
@@ -174,15 +207,25 @@ public class RunGame {
 
                     if (player.playerHasAnyWeapon() == false) {
                         System.out.println("");
+                        System.out.println("-------------------");
                         System.out.println("(Nothing to equip.)");
+                        System.out.println("-------------------");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
                         boolean success = player.equipWeapon(secondWord);
                         if (success) {
-                            System.out.println("You equipped: " + secondWord);
+                            System.out.println("");
+                            System.out.println("----------------------------");
+                            System.out.println("You equipped: " + secondWord.toUpperCase(Locale.ROOT));
+                            System.out.println("----------------------------");
+                            System.out.println("");
                         } else {
-                            System.out.println("You can't because you don't have " + secondWord);
+                            System.out.println("");
+                            System.out.println("----------------------------------------------------");
+                            System.out.println("You can't equip because you don't have " + secondWord);
+                            System.out.println("----------------------------------------------------");
+                            System.out.println("");
                         }
                         System.out.print("[Type next move here]: ");
                     }
@@ -192,7 +235,9 @@ public class RunGame {
 
                     if (player.isEquipped() == false) {
                         System.out.println("");
+                        System.out.println("---------------------------------------------");
                         System.out.println("(You can't attack, before equipping a weapon.)");
+                        System.out.println("---------------------------------------------");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
 
@@ -201,7 +246,10 @@ public class RunGame {
                         if (equipSuccess) {
                             if (player.getCurrentRoom().roomHasAnyEnemy() == false) {
                                 System.out.println("");
-                                System.out.println("(There is no one to attack in this room. So chill out.)");
+                                System.out.println("");
+                                System.out.println("----------------------------------------------------");
+                                System.out.println("(There is no one to attack in this room. Chill out.)");
+                                System.out.println("----------------------------------------------------");
                                 System.out.println("");
                                 System.out.print("[Type next move here]: ");
                             } else {
@@ -216,6 +264,7 @@ public class RunGame {
                                         Thread.sleep(0);
                                         System.out.println(" ");
                                         Thread.sleep(0);
+                                        System.out.println("-------------------");
                                         System.out.print("[Type next move here]: ");
                                     } else {
                                         //System.out.println(player.getCurrentRoom().getName()); {
@@ -226,7 +275,8 @@ public class RunGame {
                                         Thread.sleep(0);
                                         System.out.println(" ");
                                         Thread.sleep(0);
-                                        System.out.print("[Type next move here]: ");
+                                        System.out.println("-------------------");
+                                        System.out.println("[Type next move here]: ");
                                     }
 
                                 }
@@ -308,6 +358,15 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
 
+
+
+
+                    if (player.getCurrentRoom().isLit() == false){
+                        System.out.println("");
+                        System.out.println("(Too dark to see. Need light.)");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    }
      */
 
 

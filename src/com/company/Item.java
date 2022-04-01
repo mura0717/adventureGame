@@ -10,13 +10,13 @@ public class Item {
     private boolean isReadable;
     private ArrayList <Item> items = new ArrayList();
 
-    //Item Constructer
+    //Item Constructer 1
     public Item(String itemName, String itemDescription) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.items = items;
     }
-
+    //Item Constructer 2 = isUsable & isReadable added
     public Item(String itemName, String itemDescription, boolean isUsable, boolean isReadable) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -40,12 +40,13 @@ public class Item {
         return itemName;
     }
 
+    public boolean getIsReadable() {
+        return isReadable;
+    }
+
     // Item toString
     public String toString() {
         return itemDescription;
     }
 
-    //not sure what this does:
-  //  public void remove(Item temp) {
-   // }
 }

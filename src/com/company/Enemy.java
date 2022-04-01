@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Enemy {
 
-
     private Room currentRoom;
     private String enemyName;
     private String enemyDescription;
@@ -13,18 +12,13 @@ public class Enemy {
    // private boolean enemyDefeated;
    // private ArrayList<Enemy> enemies = new ArrayList<>();
 
-
     public Enemy(String enemyName, String enemyDescription, int enemyHealth) {
         this.enemyName = enemyName;
         this.enemyDescription = enemyDescription;
         this.enemyHealth = enemyHealth;
 
     }
-/*
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
-    }
-*/
+
     public String getEnemyName() {
         return enemyName;
     }
@@ -45,14 +39,6 @@ public class Enemy {
     public String toString() {
         return enemyName + " - " + enemyDescription + " - " + enemyHealth + " enemy health left.";
     }
-
-/*
-    public String getEnemyHealthStatus() {
-        return EnemyHealthStatus();
-    }
-  */
-
-
 
     }
 
