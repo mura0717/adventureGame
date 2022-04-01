@@ -181,21 +181,22 @@ public class RunGame {
                 case "read" -> {
                     if (player.playerHasReadable() == false) {
                         System.out.println("");
-                        System.out.println("-------------------");
-                        System.out.println("(Nothing to read.)");
-                        System.out.println("-------------------");
+                        System.out.println("-------------------------------------------");
+                        System.out.println("(Nothing to read on the " + secondWord + ")");
+                        System.out.println("-------------------------------------------");
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        player.read(Boolean.parseBoolean(secondWord)); {
+                        boolean success = player.readItem(secondWord);
+                        if (success) {
                             System.out.println("");
                             System.out.println("--------------------------------------------------------");
                             System.out.println(""" 
-                                                  The portal finally worked.  
-                                                  But the head scientist (John T. McGinley) became insane 
-                                                  and killed everyone except for his loyal guard. 
-                                                  If you find them, don't think twice and kill them. 
-                                                  """);
+                                    The portal finally worked.  
+                                    But the head scientist (John T. McGinley) became insane 
+                                    and killed everyone except for his loyal guard. 
+                                    If you find them, don't think twice and kill them. 
+                                    """);
                             System.out.println("--------------------------------------------------------");
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
@@ -348,9 +349,7 @@ public class RunGame {
         player.getPlayerItems().remove(items);
     }
 }
-
-    /*
-
-     */
+/*
+ */
 
 

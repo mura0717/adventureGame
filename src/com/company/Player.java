@@ -198,10 +198,14 @@ public class Player {
         return false;
     }
 
-    public boolean read (boolean isReadble){
-        Item temp = findPlayerItem(String.valueOf(isReadble));
+    public boolean readItem(String itemName) {
+        Item item = findPlayerItem(itemName);
+        if (item.getIsReadable() == true) {
             return true;
+        } else {
+            return false;
         }
+    }
 
     //Door
     public void unlockDoor(String itemName) {

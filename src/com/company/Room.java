@@ -87,7 +87,6 @@ public class Room {
         return south;
     }
 
-
     // Room toString
     public String toString() {
         return name + description;
