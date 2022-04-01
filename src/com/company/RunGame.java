@@ -259,22 +259,22 @@ public class RunGame {
                                     if (isCommandCenter) {
                                         //System.out.println(player.getCurrentRoom().getName());
                                         player.playerGuardAttack();
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         player.enemyGuardAttackPlayer();
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         System.out.println(" ");
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         System.out.println("-------------------");
                                         System.out.print("[Type next move here]: ");
                                     } else {
                                         //System.out.println(player.getCurrentRoom().getName()); {
                                         //player.playerAttack(secondWord);
                                         player.playerBossAttack();
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         player.enemyBossAttackPlayer();
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         System.out.println(" ");
-                                        Thread.sleep(0);
+                                        Thread.sleep(500);
                                         System.out.println("-------------------");
                                         System.out.println("[Type next move here]: ");
                                     }

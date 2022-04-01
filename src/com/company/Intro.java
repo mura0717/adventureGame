@@ -11,7 +11,7 @@ public class Intro {
                   \\_/\\_/\\___|_\\__\\___/_|_|_\\___|  \\__\\___/  \\__|_||_\\___| /_/ \\_\\__,_|\\_/\\___|_||_\\__|\\_,_|_| \\___|
                 ---------------------------------------------------------------------------------------------------
                 """);
-        Thread.sleep(0);
+        Thread.sleep(1000);
         System.out.println("""
         You wake up dizzy in a room that you don't recognize.
         You know that you need to get out, but you don't know how.
@@ -19,6 +19,6 @@ public class Intro {
         
         ---------------------------------------------------------
         """);
-        Thread.sleep(0);
+        Thread.sleep(1000);
     }
 }
