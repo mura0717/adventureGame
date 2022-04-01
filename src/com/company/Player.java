@@ -263,6 +263,7 @@ public class Player {
             return false;
     }
 
+    //Player Attack
     public void playerBossAttack() {
 
         Random randomNumberAttack = new Random();
@@ -317,6 +318,7 @@ public class Player {
         }
     }
 
+    //Enemy Attack - skal flyttes til Enemy faktisk
     public void enemyBossAttackPlayer() {
 
         Random randomNumberAttack = new Random();
