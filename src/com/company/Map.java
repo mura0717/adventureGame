@@ -3,15 +3,10 @@ package com.company;
 public class Map {
 
     private Room startRoom;
-
+    // Start Room Getter
     public Room getStartRoom() {
        return startRoom;
    }
-    //private String itemsList;
-
-    //Items Array List
-    //ArrayList <Item> items = new ArrayList <> (List.of(itemsList));
-
 
     public void buildMap() {
     // Room Descriptions:

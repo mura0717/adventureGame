@@ -101,7 +101,6 @@ public class Player {
         }
     }
 
-
     // Player Movement
     public void goSouth() {
         Room requestedRoom = currentRoom.getSouth();
@@ -435,7 +434,6 @@ public class Player {
         }
     }
 }
-
        /*
 && enemy2.getEnemyHealth() <= 0
         */

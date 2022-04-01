@@ -350,23 +350,7 @@ public class RunGame {
 }
 
     /*
-                        System.out.println("------------------------------------------------------");
-                        System.out.println("");
-                        System.out.println("(You can't attack the enemy, before equipping a weapon.)");
-                        System.out.println("");
-                        System.out.println("(The enemy hit you, for that mistake)");
-                        System.out.println("");
-                        System.out.print("[Type next move here]: ");
 
-
-
-
-                    if (player.getCurrentRoom().isLit() == false){
-                        System.out.println("");
-                        System.out.println("(Too dark to see. Need light.)");
-                        System.out.println("");
-                        System.out.print("[Type next move here]: ");
-                    }
      */
 
 

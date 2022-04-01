@@ -19,9 +19,7 @@ public class Commands {
                 - eat:                  Make you eat food if you have any.
                 - equip:                Equips any weapon you have.
                 - attack:               Attacks an enemy with an equipped weapon.
-                - unlock:               Unlocks doors if you have the right key.
-                - use:                  Uses special equipment that you find.
-                - turn on/off:          Turns on and off flashlight.    
+                - unlock:               Unlocks doors if you have the right key. 
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
@@ -29,3 +27,7 @@ public class Commands {
 
     }
 }
+/*
+                - use:                  Uses special equipment that you find.
+                - turn on/off:          Turns on and off flashlight.
+ */
