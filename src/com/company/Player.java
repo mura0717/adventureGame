@@ -11,7 +11,6 @@ public class Player {
 
     private ArrayList<Item> playerItems = new ArrayList<>();
 
-
     // Current Room Getter & Setter
     public Room getCurrentRoom() {
         return currentRoom;
@@ -142,8 +141,7 @@ public class Player {
         }
     }
 
-    /*-------------------------------------------------------------------------------*/
-
+    //Items
     public Item findRoomItem(String itemName) {
         ArrayList<Item> items = currentRoom.getRoomItems();
         for (int i = 0; i < items.size(); i++) {
@@ -190,6 +188,7 @@ public class Player {
         }
     }
 
+    //Reading
     public boolean playerHasReadable() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getIsReadable()) {
@@ -204,6 +203,7 @@ public class Player {
             return true;
         }
 
+    //Door
     public void unlockDoor(String itemName) {
             currentRoom.getNorth().setIsLocked(false);
     }
@@ -217,6 +217,7 @@ public class Player {
         return false;
     }
 
+    //Food
     public boolean playerHasAnyFood() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i) instanceof Food) {
@@ -236,6 +237,7 @@ public class Player {
         return false;
     }
 
+    //Weapons
     public boolean playerHasAnyWeapon() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i) instanceof Weapon) {
@@ -368,6 +370,7 @@ public class Player {
         }
     }
 
+    //As I lay dying.
     public boolean enemiesRemoved() {
         if (currentRoom.getRoomEnemies().size() == 0) {
             return true;
@@ -434,9 +437,8 @@ public class Player {
         }
     }
 }
-       /*
-&& enemy2.getEnemyHealth() <= 0
-        */
+/*
+    */
 
 
 
