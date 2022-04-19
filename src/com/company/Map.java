@@ -43,7 +43,7 @@ public class Map {
             You carefully move closer to it and realize that there is button next to it.
             
             You feel the urge to push the button, but you are not sure.
-            Do you want to push the button? """, true);
+            Do you want to push the button? """, true, false);
 
         Room room6 = new Room("Cafeteria", """
             

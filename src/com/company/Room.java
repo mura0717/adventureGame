@@ -27,7 +27,7 @@ public class Room {
     }
 
     // Room Constructor 2: isLocked & noEnemy added
-    public Room(String name, String description, boolean isLocked){
+    public Room(String name, String description, boolean isLocked, boolean noEnemy){
         this.name = name;
         this.description = description;
         this.roomItems = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Room {
     }
 
     // Room Constructor : isLitadded
-    public Room(String name, String description, boolean isLocked, boolean isLit){
+    public Room(String name, String description, boolean isLocked, boolean noEnemy, boolean isLit){
         this.name = name;
         this.description = description;
         this.roomItems = new ArrayList<>();
