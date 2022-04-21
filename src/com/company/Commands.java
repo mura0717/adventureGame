@@ -20,6 +20,7 @@ public class Commands {
                 - equip:                Equips any weapon you have.
                 - attack:               Attacks an enemy with an equipped weapon.
                 - unlock:               Unlocks doors if you have the right key. 
+                - turn on:              Turns on things.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
