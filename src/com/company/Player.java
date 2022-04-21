@@ -207,6 +207,21 @@ public class Player {
         }
     }
 
+    //Using
+    public boolean playerHasUsable() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getIsUsable()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean useItem(String itemName) {
+        currentRoom.setLit(true);
+        return false;
+    }
+
     //Door
     public void unlockDoor(String itemName) {
             currentRoom.getNorth().setIsLocked(false);

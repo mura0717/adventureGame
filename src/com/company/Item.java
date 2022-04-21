@@ -44,6 +44,10 @@ public class Item {
         return isReadable;
     }
 
+    public boolean getIsUsable() {
+        return isUsable;
+    }
+
     // Item toString
     public String toString() {
         return itemDescription;

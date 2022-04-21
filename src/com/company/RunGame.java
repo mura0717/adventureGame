@@ -153,6 +153,29 @@ public class RunGame {
                         }
                 }
             }
+                case "turn on" -> {
+                    if (player.playerHasUsable() == false) {
+                        System.out.println("");
+                        System.out.println("-------------------------------------------");
+                        System.out.println("(Nothing to turn on.");
+                        System.out.println("-------------------------------------------");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+                    } else {
+                        boolean playerHasUsableSuccess = player.useItem(secondWord);
+                        if (playerHasUsableSuccess) {
+                            player.useItem(secondWord);
+                            System.out.println("");
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println(""" 
+                                    You turned on the flashlight. 
+                                    """);
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println("");
+                            System.out.print("[Type next move here]: ");
+                        }
+                    }
+                }
 
                 case "eat" -> {
                     if (player.playerHasAnyFood() == false) {
