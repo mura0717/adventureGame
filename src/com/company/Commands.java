@@ -12,7 +12,7 @@ public class Commands {
                 - go west     ( west  - go w -  w )
                 
                 - look:                 Look around for item.
-                - take:                 Takes items, and adds to inventory.
+                - take:                 Takes items, and adds to the inventory.
                 - drop:                 Drops items, and removes them from the inventory.
                 - inventory (inv):      Shows current list of items.
                 - health:               Shows current health.
@@ -21,6 +21,7 @@ public class Commands {
                 - attack:               Attacks an enemy with an equipped weapon.
                 - unlock:               Unlocks doors if you have the right key. 
                 - turn on:              Turns on things.
+                - insert:               Inserts keycards.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
@@ -30,5 +31,4 @@ public class Commands {
 }
 /*
                 - use:                  Uses special equipment that you find.
-                - turn on/off:          Turns on and off flashlight.
  */

@@ -208,7 +208,7 @@ public class Player {
     }
 
     //Using
-    public boolean playerHasUsable() {
+    public boolean playerHasFlashlight() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getIsUsable()) {
                 return true;
@@ -217,7 +217,7 @@ public class Player {
         return false;
     }
 
-    public boolean useItem(String itemName) {
+    public boolean useFlashlight(String itemName) {
         currentRoom.setLit(true);
         return false;
     }

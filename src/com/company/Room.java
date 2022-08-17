@@ -35,7 +35,7 @@ public class Room {
         this.noEnemy = noEnemy;
     }
 
-    // Room Constructor : isLitadded
+    // Room Constructor : isLit added
     public Room(String name, String description, boolean isLocked, boolean noEnemy, boolean isLit){
         this.name = name;
         this.description = description;

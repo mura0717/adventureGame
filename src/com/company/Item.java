@@ -29,13 +29,16 @@ public class Item {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
+
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
+
     //Item Getters
     public String getItemDescription() {
         return itemDescription;
     }
+
     public String getItemName() {
         return itemName;
     }

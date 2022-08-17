@@ -56,7 +56,18 @@ public class RunGame {
                 case "go west", "go w", "w", "west" -> player.goWest();
 
                 case "look" -> {
-                    if (player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
+                    if(player.getCurrentRoom().isLit() == false){
+                        System.out.println("");
+                        System.out.println("""
+                                The room is pitch black. 
+                                You can't see anything.
+                                """);
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+
+                    }
+
+                    else if (player.getCurrentRoom().isLit() == true && player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
@@ -153,8 +164,9 @@ public class RunGame {
                         }
                 }
             }
+
                 case "turn on" -> {
-                    if (player.playerHasUsable() == false) {
+                    if (player.playerHasFlashlight() == false) {
                         System.out.println("");
                         System.out.println("-------------------------------------------");
                         System.out.println("(Nothing to turn on.");
@@ -162,20 +174,31 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        boolean playerHasUsableSuccess = player.useItem(secondWord);
-                        if (playerHasUsableSuccess) {
-                            player.useItem(secondWord);
+                        boolean playerHasUsableSuccess = player.useFlashlight(secondWord);
+                        if (playerHasUsableSuccess && player.getCurrentRoom().isLit() == false) {
+                            player.useFlashlight(secondWord);
                             System.out.println("");
                             System.out.println("--------------------------------------------------------");
                             System.out.println(""" 
-                                    You turned on the flashlight. 
+                                    You turned on the flashlight.
+                                    Now you can look around the room. 
                                     """);
                             System.out.println("--------------------------------------------------------");
                             System.out.println("");
                             System.out.print("[Type next move here]: ");
-                        }
+                        } else
+                            System.out.println("");
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println(""" 
+                                    There is already light in the room. 
+                                    """);
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println("");
+                            System.out.print("[Type next move here]: ");
                     }
                 }
+
+
 
                 case "eat" -> {
                     if (player.playerHasAnyFood() == false) {

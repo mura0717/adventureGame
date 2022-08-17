@@ -26,7 +26,7 @@ public class Map {
             
             
             You can't see anything, it is completely dark. 
-            You can't help but think: 'I wish I had a light.' """, false, false);
+            You can't help but think: 'I wish I had a light.' """, false, true, false);
 
         Room room4 = new Room("Storage", """
             
@@ -75,7 +75,7 @@ public class Map {
         Room room9 = new Room("Toilets", """
             
             
-            There is disgunting stench in the air.
+            There is disgusting stench in the air.
             You try to breathe, but it is a difficult task.
             
             You wish you had a gas mask, but not in this game baby! """);
