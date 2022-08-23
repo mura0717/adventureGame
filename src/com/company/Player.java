@@ -207,7 +207,7 @@ public class Player {
         }
     }
 
-    //Using
+    //Turn on
     public boolean playerHasFlashlight() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getIsUsable()) {
@@ -217,8 +217,8 @@ public class Player {
         return false;
     }
 
-    public boolean useFlashlight(String itemName) {
-        currentRoom.setLit(true);
+    public boolean turnOnFlashlight(String itemName) {
+        currentRoom.setIsLit(true);
         return false;
     }
 
@@ -235,6 +235,28 @@ public class Player {
         }
         return false;
     }
+
+    //Device
+    public boolean playerHasKeyCard() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getItemName().contains("keycard")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean insertKeycard(String itemName) {}
+
+    public boolean playerHasValve() {
+        for (int i = 0; i < playerItems.size(); i++) {
+            if (playerItems.get(i).getItemName().contains("valve")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     //Food
     public boolean playerHasAnyFood() {
@@ -300,7 +322,7 @@ public class Player {
             System.out.println("Enemy was hit - " + enemy.getEnemyHealth() + " health");
             System.out.println("-----------------------------------------------------------");
 
-            enemyDies();
+            bossDies();
 
         } else if (A == 4 || A == 5 || A == 6) {
             System.out.println("");
@@ -327,7 +349,7 @@ public class Player {
             System.out.println("Enemy was hit - " + enemy.getEnemyHealth() + " health");
             System.out.println("-----------------------------------------------------------");
 
-            enemyDies();
+            bossDies();
 
         } else if (A == 4 || A == 5 || A == 6) {
             System.out.println("");
@@ -416,7 +438,7 @@ public class Player {
 
     }
 
-    public void enemyDies() {
+    public void bossDies() {
 
         Enemy enemy = currentRoom.getRoomEnemies().get(0);
 
@@ -436,7 +458,7 @@ public class Player {
             //enemiesRemoved();
             System.out.println("");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("John T. McKinley falls on the floor.");
+            System.out.println("John T. McKinley finally falls on the floor.");
             System.out.println("-----------------------------------------------------------");
             System.out.println("");
             currentRoom.getRoomEnemies().remove(0);
@@ -445,12 +467,7 @@ public class Player {
             System.out.println("""
                     You killed John T. McKinley a.k.a. The Mad Scientist a.k.a. The Boss! - That's insane!.
                     After you kill the boss, you see a control board right next to the Portal.
-                    You use the key card you found in the locker to start it up. 
-                    And then you insert the valve to turn the Portal on.
-                    The Portal starts to turn and soon a black void is formed inside its ring.
-                    You walk to towards it and step into the void and travel to the far reaches of the galaxy.
-                    
-                    The Adventure is finished! WELL DONE.
+                    You come closer look at it and realize there is a card slot.
                     """);
             System.out.println("----------------------------------------------------------------------");
             System.out.println("");

@@ -102,11 +102,11 @@ public class Room {
     }
 
     //Room isLit Getter & Setter
-    public void setLit(boolean lit) {
+    public void setIsLit(boolean lit) {
         isLit = lit;
     }
 
-    public boolean isLit() {
+    public boolean getIsLit() {
         return isLit;
     }
 

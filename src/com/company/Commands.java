@@ -21,7 +21,7 @@ public class Commands {
                 - attack:               Attacks an enemy with an equipped weapon.
                 - unlock:               Unlocks doors if you have the right key. 
                 - turn on:              Turns on things.
-                - insert:               Inserts keycards.
+                - insert:               Allows you to use keycards.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
@@ -29,6 +29,3 @@ public class Commands {
 
     }
 }
-/*
-                - use:                  Uses special equipment that you find.
- */

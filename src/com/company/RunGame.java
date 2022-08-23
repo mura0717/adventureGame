@@ -56,7 +56,7 @@ public class RunGame {
                 case "go west", "go w", "w", "west" -> player.goWest();
 
                 case "look" -> {
-                    if(player.getCurrentRoom().isLit() == false){
+                    if(player.getCurrentRoom().getIsLit() == false){
                         System.out.println("");
                         System.out.println("""
                                 The room is pitch black. 
@@ -67,7 +67,7 @@ public class RunGame {
 
                     }
 
-                    else if (player.getCurrentRoom().isLit() == true && player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
+                    else if (player.getCurrentRoom().getIsLit() == true && player.getCurrentRoom().roomHasAnyItem() == false && player.getCurrentRoom().roomHasAnyEnemy() == false) {
                         System.out.println("");
                         System.out.println("(Nothing of interest)");
                         System.out.println("");
@@ -174,9 +174,9 @@ public class RunGame {
                         System.out.println("");
                         System.out.print("[Type next move here]: ");
                     } else {
-                        boolean playerHasUsableSuccess = player.useFlashlight(secondWord);
-                        if (playerHasUsableSuccess && player.getCurrentRoom().isLit() == false) {
-                            player.useFlashlight(secondWord);
+                        boolean playerHasFlashlightSuccess = player.turnOnFlashlight(secondWord);
+                        if (playerHasFlashlightSuccess && player.getCurrentRoom().getIsLit() == false) {
+                            player.turnOnFlashlight(secondWord);
                             System.out.println("");
                             System.out.println("--------------------------------------------------------");
                             System.out.println(""" 
@@ -197,8 +197,6 @@ public class RunGame {
                             System.out.print("[Type next move here]: ");
                     }
                 }
-
-
 
                 case "eat" -> {
                     if (player.playerHasAnyFood() == false) {
@@ -341,8 +339,45 @@ public class RunGame {
                     if (tempHealth > 75) {
                         System.out.println(tempHealth + " - You're in good health!");
                     } else if (tempHealth < 75) {
-                        System.out.println(tempHealth + " - You need food for better health, so avoid combat.");
+                        System.out.println(tempHealth + " - You need food for better health so avoid combat.");
                     }
+                }
+
+                case "insert" -> {
+                    if (player.playerHasKeyCard() == false){
+                        System.out.println("");
+                        System.out.println("---------------------------------------------");
+                        System.out.println("(Nothing to insert.)");
+                        System.out.println("---------------------------------------------");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+
+                    } else if (player.playerHasKeyCard() == true && !player.getCurrentRoom().equals("The Portal")){
+                        System.out.println("");
+                        System.out.println("---------------------------------------------");
+                        System.out.println("(There isn't anything, which you can insert the keycard in.)");
+                        System.out.println("---------------------------------------------");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
+
+                    } else {
+                        boolean playerHasKeyCardSuccess = player.insertKeycard(secondWord);
+                        if (playerHasKeyCardSuccess){
+
+                            System.out.println("");
+                            System.out.println("---------------------------------------------");
+                            System.out.println("""
+                                    You insert the key card you found in the locker into the control board.
+                                    And a valve shaft appears.
+                                    """);
+
+                        }
+
+                    }
+                }
+
+                case "place" -> {
+
                 }
 
                 case "inventory", "inv" -> {
