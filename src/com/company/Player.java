@@ -246,7 +246,13 @@ public class Player {
         return false;
     }
 
-    public boolean insertKeycard(String itemName) {}
+    public boolean unlockControlBoard(String itemName) {
+        Item item = findPlayerItem(itemName);
+        if (item.equals("keycard")) {
+            item.setKeyCardUsed(true);
+        }
+        return false;
+    }
 
     public boolean playerHasValve() {
         for (int i = 0; i < playerItems.size(); i++) {

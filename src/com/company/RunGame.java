@@ -12,6 +12,8 @@ public class RunGame {
 
     private Player player = new Player();
 
+    private Item item = new Item();
+
     public void playGame() throws InterruptedException {
 
         map.buildMap();
@@ -19,6 +21,7 @@ public class RunGame {
         player.setRoom(startRoom);
 
         boolean gameLoop = true;
+
         // Player Input Scanner
         Scanner userInput = new Scanner(System.in);
 
@@ -361,24 +364,49 @@ public class RunGame {
                         System.out.print("[Type next move here]: ");
 
                     } else {
-                        boolean playerHasKeyCardSuccess = player.insertKeycard(secondWord);
+                        boolean playerHasKeyCardSuccess = player.unlockControlBoard(secondWord);
                         if (playerHasKeyCardSuccess){
-
                             System.out.println("");
                             System.out.println("---------------------------------------------");
                             System.out.println("""
-                                    You insert the key card you found in the locker into the control board.
-                                    And a valve shaft appears.
+                                    You insert the keycard into the control board.
+                                    And a valve rim appears.
                                     """);
-
+                            System.out.println("---------------------------------------------");
+                            System.out.println("");
+                            }
                         }
+
+                    }
+
+                case "mount" -> {
+                    boolean playerHasValveSuccess = player.playerHasValve();
+                    if (playerHasValveSuccess == true && item.getKeyCardUsed() == true) {
+                        System.out.println("");
+                        System.out.println("---------------------------------------------");
+                        System.out.printf("""
+                                You mount the valve to turn the Portal on.
+                                The Portal starts to turn and soon a black void is formed inside its ring.
+                                You walk to towards it and step into the void and travel to the far reaches of the galaxy.
+                                                                        
+                                The Adventure is finished! WELL DONE.
+                                """);
+                        System.out.println("---------------------------------------------");
+                        System.out.println("");
+
+                    } else {
+                        System.out.println("");
+                        System.out.println("---------------------------------------------");
+                        System.out.printf("""
+                                Nothing to mount.
+                                """);
+                        System.out.println("---------------------------------------------");
+                        System.out.println("");
+                        System.out.print("[Type next move here]: ");
 
                     }
                 }
 
-                case "place" -> {
-
-                }
 
                 case "inventory", "inv" -> {
                     System.out.println("");

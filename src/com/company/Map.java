@@ -106,11 +106,11 @@ public class Map {
         // Items & Their Locations:
         room1.addItem(new Food("sandwich", "A Club Sandwich: Gives +80 in health, Yum!", 80));
         room2.addItem(new MeleeWeapon("knife","A rusty knife. Could use it, to defend for myself? - +25 damage", 25));
-        room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly.", true, false, false));
-        room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark.", true, false, false));
-        room6.addItem(new Item("report", "A Top Secret Report.", false, true, false));
-        room7.addItem(new Item("keycard", "An electronic keycard. Could use it to start an electronic device possibly.", true, false, true));
-        room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what.", true, false, false));
+        room3.addItem(new Item("key", "A metal key. Could use it to open a locked door possibly.", true, false));
+        room4.addItem(new Item("flashlight", "A flashlight. Could use it when it is dark.", true, false));
+        room6.addItem(new Item("report", "A Top Secret Report.", false, true));
+        room7.addItem(new Item("keycard", "An electronic keycard. Could use it to start an electronic device possibly.", true, false, false));
+        room9.addItem(new Item("valve", "A weird shaped, metal valve. Could probably use it but yet sure for what.", true, false));
 
         room8.addEnemy(new Enemy("Guard ", "Look aggressive.", 100));
         room5.addEnemy(new Enemy("The Boss ", "Looks ugly.", 200));
