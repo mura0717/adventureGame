@@ -407,14 +407,13 @@ public class RunGame {
                     }
                 }
 
-
                 case "inventory", "inv" -> {
                     System.out.println("");
                     System.out.println("-------------------");
                     System.out.println("Player inventory is: ");
                     System.out.println("-------------------");
                     System.out.println("");
-                    showInventory();
+                    player.showInventory();
                     System.out.println("");
                     System.out.println("-------------------");
                     System.out.print("[Type next move here]: ");
@@ -448,17 +447,7 @@ public class RunGame {
         }
     }
 
-    public void showInventory() {
-        ArrayList<Item> items = player.getPlayerItems();
-        for (int i = 0; i < items.size(); i++) {
-            System.out.println("");
-            System.out.println(items.get(i).getItemDescription());
-            System.out.println("");
-        }
-        player.getPlayerItems().remove(items);
-    }
+
 }
-/*
- */
 
 

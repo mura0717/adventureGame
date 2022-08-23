@@ -4,7 +4,7 @@ public class Commands {
 
     public static void menuLoop() {
         System.out.print("""
-            You can orient yourself with the following commands menu:
+            You can orient yourself with the following commands:
             
                 - go north    ( north - go n -  n )
                 - go south    ( south - go s -  s )
@@ -22,6 +22,7 @@ public class Commands {
                 - unlock:               Unlocks doors if you have the right key. 
                 - turn on:              Turns on things.
                 - insert:               Allows you to use keycards.
+                - mount:                Allows you to mount equipment.
                 - help:                 Show the commands menu again.
                 - exit:                 End the adventure game.
                 
