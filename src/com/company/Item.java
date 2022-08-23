@@ -11,6 +11,7 @@ public class Item {
     private boolean keyCardUsed;
     private ArrayList <Item> items = new ArrayList();
 
+    //Item Default Constructer
     public Item (){};
 
     //Item Constructer 1
@@ -19,6 +20,7 @@ public class Item {
         this.itemDescription = itemDescription;
         this.items = items;
     }
+
     //Item Constructer 2 = isUsable & isReadable added, isInsertableUsed added
     public Item(String itemName, String itemDescription, boolean isUsable, boolean isReadable) {
         this.itemName = itemName;

@@ -188,6 +188,16 @@ public class Player {
         }
     }
 
+    public void showInventory() {
+        ArrayList<Item> items = getPlayerItems();
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println("");
+            System.out.println(items.get(i).getItemDescription());
+            System.out.println("");
+        }
+        getPlayerItems().remove(items);
+    }
+
     //Reading
     public boolean playerHasReadable() {
         for (int i = 0; i < playerItems.size(); i++) {
@@ -246,14 +256,6 @@ public class Player {
         return false;
     }
 
-    public boolean unlockControlBoard(String itemName) {
-        Item item = findPlayerItem(itemName);
-        if (item.equals("keycard")) {
-            item.setKeyCardUsed(true);
-        }
-        return false;
-    }
-
     public boolean playerHasValve() {
         for (int i = 0; i < playerItems.size(); i++) {
             if (playerItems.get(i).getItemName().contains("valve")) {
@@ -263,6 +265,13 @@ public class Player {
         return false;
     }
 
+    public boolean unlockControlBoard(String itemName) {
+        Item item = findPlayerItem(itemName);
+        if (item.equals("keycard")) {
+            item.setKeyCardUsed(true);
+        }
+        return false;
+    }
 
     //Food
     public boolean playerHasAnyFood() {
@@ -481,8 +490,6 @@ public class Player {
         }
     }
 }
-/*
-    */
 
 
 
